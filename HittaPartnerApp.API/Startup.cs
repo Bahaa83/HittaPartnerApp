@@ -33,7 +33,13 @@ namespace HittaPartnerApp.API
                 Options.SwaggerDoc("HittaPartnerOpenAPISpec", new Microsoft.OpenApi.Models.OpenApiInfo
                 { 
                     Title="Hitta Partner App API",
-                    Version="1"
+                    Version="1",
+                    Description= "Hitta Partner App Open Api(Examensarbete)",
+                    Contact=new Microsoft.OpenApi.Models.OpenApiContact
+                    {
+                        Email="bahaa.abokhaled83@gmail.com",
+                        Name="Bahaa Abo khaled"
+                    }
                 });
                 var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.Xml";
                 var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);

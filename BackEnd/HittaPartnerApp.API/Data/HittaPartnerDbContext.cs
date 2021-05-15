@@ -9,9 +9,9 @@ namespace HittaPartnerApp.API.Data
 {
     public class HittaPartnerDbContext:DbContext
     {
-        public HittaPartnerDbContext()
-        {
+        public HittaPartnerDbContext(DbContextOptions<HittaPartnerDbContext> options) : base(options) { }
+        
+        public DbSet<User> users { get; set; }
 
-        }
-    }
+}
 }

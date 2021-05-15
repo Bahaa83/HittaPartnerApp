@@ -28,9 +28,5 @@
     <ProjectReference Include="..\HittaPartnerApp.Models\HittaPartnerApp.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Repositories\" />
-  </ItemGroup>
-
 
 </Project>

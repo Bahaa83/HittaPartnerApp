@@ -1,4 +1,5 @@
-﻿using HittaPartnerApp.API.Services.IRepositories;
+﻿using HittaPartnerApp.API.Data;
+using HittaPartnerApp.API.Services.IRepositories;
 using HittaPartnerApp.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,12 @@ namespace HittaPartnerApp.API.Services.Repositories
 {
     public class Authentication : IAuthentication
     {
-        
+        private readonly HittaPartnerDbContext db;
+
+        public Authentication(HittaPartnerDbContext db)
+        {
+            this.db = db;
+        }
         public async Task<bool> IsExists(string UserName)
         {
             throw new NotImplementedException();

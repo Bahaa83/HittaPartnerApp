@@ -28,6 +28,7 @@ namespace HittaPartnerApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(Options=>
             {
                 Options.SwaggerDoc("HittaPartnerOpenAPISpec", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -65,6 +66,7 @@ namespace HittaPartnerApp.API
             });
 
             app.UseRouting();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthorization();
 

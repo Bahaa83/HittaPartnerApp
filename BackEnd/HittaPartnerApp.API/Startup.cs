@@ -1,4 +1,6 @@
 using HittaPartnerApp.API.Data;
+using HittaPartnerApp.API.Services.IRepositories;
+using HittaPartnerApp.API.Services.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +37,7 @@ namespace HittaPartnerApp.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
+            services.AddScoped<IAuthentication, Authentication>();
             services.AddSwaggerGen(Options=>
             {
                 Options.SwaggerDoc("HittaPartnerOpenAPISpec", new Microsoft.OpenApi.Models.OpenApiInfo

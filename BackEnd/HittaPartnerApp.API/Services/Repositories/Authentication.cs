@@ -28,7 +28,22 @@ namespace HittaPartnerApp.API.Services.Repositories
 
         public async Task<User> Register(User user, string Password)
         {
-            throw new NotImplementedException();
+            byte[] passwordHash, passwordSalt;
+            CreatPasswordHash( Password, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            await db.users.AddAsync(user);
+            await db.SaveChangesAsync(); 
+            return user;
+        }
+
+        private void CreatPasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
         }
     }
 }

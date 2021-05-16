@@ -69,36 +69,36 @@ namespace HittaPartnerApp.API
                 var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.Xml";
                 var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
                 Options.IncludeXmlComments(cmlCommentsFullPath);
-            //    // Lägg till JWT token inom Swagger .
-            //    Options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-            //    {
-            //        Description=
-            //        "Jwt Authorization Header useing the Bearer Schena.\r\r\r\n Enter 'Bearer '[mellanslag]'och sedan din token i texttimatning nedan, ",
-            //        Name="Authorization",
-            //        In=Microsoft.OpenApi.Models.ParameterLocation.Header,
-            //        Type=Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-            //        Scheme="Bearer"
-            //    });
-            //    Options.AddSecurityRequirement(new OpenApiSecurityRequirement() {
-            //        {new OpenApiSecurityScheme
-            //        {
-            //            Reference= new OpenApiReference
-            //            {
-            //                Type= ReferenceType.SecurityScheme,
-            //                Id="Bearer"
-            //            },
-            //            Scheme="oauth2",
-            //            Name="Bearer",
-            //            In=ParameterLocation.Header,
-                       
-            //        },
-            //        new List<string>()
-            //        }
-                
-            //    });
-              
-                
-            //});
+                // Lägg till JWT token inom Swagger .
+                Options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                {
+                    Description =
+                    "Jwt Authorization Header useing the Bearer Schena.\r\r\r\n Enter 'Bearer '[mellanslag]'och sedan din token i texttimatning nedan, ",
+                    Name = "Authorization",
+                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                Options.AddSecurityRequirement(new OpenApiSecurityRequirement() {
+                    {new OpenApiSecurityScheme
+                    {
+                        Reference= new OpenApiReference
+                        {
+                            Type= ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                        },
+                        Scheme="oauth2",
+                        Name="Bearer",
+                        In=ParameterLocation.Header,
+
+                    },
+                    new List<string>()
+                    }
+
+                });
+
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

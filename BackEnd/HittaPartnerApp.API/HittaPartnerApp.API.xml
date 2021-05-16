@@ -11,5 +11,12 @@
             <param name="userForRegisterDto">UserForRegisterDto från klient sida</param>
             <returns>Status Code 201</returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.AccountsController.Login(HittaPartnerApp.API.Services.DtoModels.UserForLoginDto)">
+            <summary>
+            Loggin 
+            </summary>
+            <param name="userForLoginDto">UserForLoginDto model från klientsida </param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

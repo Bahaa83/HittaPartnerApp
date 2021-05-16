@@ -25,6 +25,11 @@ namespace HittaPartnerApp.API.Controllers
         {
             _repo = repo;
         }
+        /// <summary>
+        /// Registrera ett nytt användare
+        /// </summary>
+        /// <param name="userForRegisterDto">UserForRegisterDto från klient sida</param>
+        /// <returns>Status Code 201</returns>
         [HttpPost("Register")]
         [ProducesResponseType(201)]
         [ProducesDefaultResponseType]

@@ -4,5 +4,12 @@
         <name>HittaPartnerApp.API</name>
     </assembly>
     <members>
+        <member name="M:HittaPartnerApp.API.Controllers.AccountsController.Register(HittaPartnerApp.API.Services.DtoModels.UserForRegisterDto)">
+            <summary>
+            Registrera ett nytt användare
+            </summary>
+            <param name="userForRegisterDto">UserForRegisterDto från klient sida</param>
+            <returns>Status Code 201</returns>
+        </member>
     </members>
 </doc>

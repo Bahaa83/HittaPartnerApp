@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 *,body,html
 {
     margin: 0%;
@@ -9,47 +10,38 @@ body
 {
     background-color: #eee;
 }
-header
+/*------------nav--Css--start----------*/
+nav
 {
-    width: 90%;
+    width: 96%;
     height: 100px;
     position: fixed;
-    background-color: white;
-    margin-left: 5%;
-    margin-right: 5%;
-
+    margin-left: 2%;
+    margin-right: 2%;
+background-color: white;
 }
-.Logo
+nav a
 {
     height: 60px;
     padding: 10px;
     margin: 10px 20px;
     float: left;
 }
-nav
-{
-    height: 100px;
-    
-}
-#nav-items ul{
-    list-style: none;
-    
-}
-#nav-items ul li{
- 
-    float: right;
-}
-.nav-item
+.nav-link
 {
     text-decoration: none;
     height: 60px;
     padding: 10px;
     margin: 10px 20px;
-    color: black;
+    color:black !important;
     display: inline-block;
 }
-.nav-item:hover 
+.nav-link:hover,.nav-link:focus
 {
-   color:red; 
-   
+    color:red !important;
+} 
+.navbar-nav 
+{
+margin-left: 400px;
 }
+/*------------nav--Css--End----------*/

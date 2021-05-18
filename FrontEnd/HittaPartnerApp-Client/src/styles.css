@@ -11,12 +11,12 @@ body
 }
 header
 {
-    width: 80%;
+    width: 90%;
     height: 100px;
     position: fixed;
     background-color: white;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
 
 }
 .Logo

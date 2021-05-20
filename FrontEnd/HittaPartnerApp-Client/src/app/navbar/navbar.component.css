@@ -1,37 +1,19 @@
-/*------------nav--Css--start----------*/
-nav
-{
-    width: 96%;
-    height: 100px;
-    position: fixed;
-    margin-left: 2%;
-    margin-right: 2%;
-background-color: white;
-}
-nav a
-{
-    height: 60px;
-    padding: 10px;
-    margin: 10px 20px;
-    float: left;
+nav{
+    width: 95%;
+    margin: 0 2.5%;
 }
 .nav-link
 {
+    color:black !important ;
+}
+
+.nav-link:hover, .nav-link:focus {
     text-decoration: none;
-    height: 60px;
-    padding: 10px;
-    margin: 10px 20px;
-    color:black !important;
-    display: inline-block;
+    color: red !important;
 }
-.nav-link:hover,.nav-link:focus
-{
-    color:red !important;
-} 
-.navbar-nav 
-{
-margin-left: 400px;
-
-}
-
+.btn-outline-success:hover {
+    text-decoration: none;
+    color: black !important;
+    background:green !important
+      }
 /*------------nav--Css--End----------*/

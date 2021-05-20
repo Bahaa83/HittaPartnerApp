@@ -16,8 +16,8 @@
         </li>
       </ul>
       <form #LoginForm="ngForm" class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="användarenamn" aria-label="användarenamn">
-        <input class="form-control me-2" type="password" placeholder="lösenord" aria-label="lösenord">
+        <input class="form-control me-2" type="text" [(ngModel)]="model.username" placeholder="användarenamn" aria-label="användarenamn">
+        <input class="form-control me-2" type="password" [(ngModel)]="model.password" placeholder="lösenord" aria-label="lösenord">
         <input style="font-family:OpenSans-Bold;color: black;" type="submit" class="btn btn-outline-success" type="submit" value="LOGGA IN">
       </form>
     </div>

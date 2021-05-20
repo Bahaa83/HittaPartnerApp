@@ -82,8 +82,8 @@ namespace HittaPartnerApp.API.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return Ok(new
             {
-                token = tokenHandler.WriteToken(token),
-                userFromRepo
+                token = tokenHandler.WriteToken(token)
+               
             });
         }
     }

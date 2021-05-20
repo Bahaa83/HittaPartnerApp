@@ -6,6 +6,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AccountService } from './_services/account.service';
+
 
 
 @NgModule({
@@ -19,7 +21,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

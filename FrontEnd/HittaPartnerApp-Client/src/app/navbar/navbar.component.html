@@ -1,10 +1,10 @@
 
-<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light ">
+<nav class="navbar navbar-expand-md navbar-light  bg-light ">
   <div class="container-fluid">
-    <a class="navbar-brand" style="color: red;font-size:2.25rem;font-family:OpenSans-ExtraBold;font-weight:bolder;" href="#"><i class="fa fa-heart" aria-hidden="true"></i>HITTA PARTNER<i class="fa fa-heart" aria-hidden="true"></i></a>
+    <a class="navbar-brand" style="color: red;font-size:2.25rem;font-weight:bolder;" href="#"><i class="fa fa-heart" aria-hidden="true"></i>HITTA PARTNER<i class="fa fa-heart" aria-hidden="true"></i></a>
     
     <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0 "style=" font-family:OpenSans-Bold">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0 " >
               <li class="nav-item">
                 <a class="nav-link "  href="#">HEM</a>
               </li>
@@ -22,7 +22,7 @@
               </li>
           </ul>
       <div class="dropdown">
-              <a *ngIf="loggedIn()" style="font-family:OpenSans-Bold" class="dropdown-toggle text-dark  nav-link" >
+              <a *ngIf="loggedIn()"  class="dropdown-toggle text-dark nav-link " >
                 Välkommen
               </a>
             
@@ -41,9 +41,9 @@
               </ul>
       </div>
       <form *ngIf="!loggedIn()" (ngSubmit)="login()" #LoginForm="ngForm" class="d-flex">
-            <input  name="username" required class="form-control me-2" type="text" [(ngModel)]="model.username" placeholder="användarenamn" aria-label="användarenamn">
-            <input  name="password" required class="form-control me-2" type="password" [(ngModel)]="model.password" placeholder="lösenord" aria-label="lösenord">
-            <input [disabled]="!LoginForm.valid" style="font-family:OpenSans-Bold;color: black;" type="submit" class="btn btn-outline-success" type="submit" value="LOGGA IN">
+            <input  name="username" required class="form-control me-2" type="text" [(ngModel)]="model.username" placeholder="Användarnamn" aria-label="användarenamn">
+            <input  name="password" required class="form-control me-2" type="password" [(ngModel)]="model.password" placeholder="Lösenord" aria-label="lösenord">
+            <input [disabled]="!LoginForm.valid" style="font-weight: bold;color: #eee !important;" type="submit" class="btn btn-success " type="submit" value="LOGGA IN">
       </form>
     </div>
   </div>

@@ -1,4 +1,8 @@
-.container 
+.mainContent
 {
+   width: 98%;
+   height: 850px;
+   margin: 0 1%;
     background-image: url('../assets/images/Backgrund.jpg');
+    background-position: center;
 }

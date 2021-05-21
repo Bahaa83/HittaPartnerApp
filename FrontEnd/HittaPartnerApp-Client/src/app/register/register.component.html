@@ -1,17 +1,17 @@
-<form >
+<form #regForm="ngForm" (ngSubmit)="register()" >
     <h2 class="text-center texet-dark" style="font-weight: bolder; color:red !important">
           Din partner väntar på dig
     </h2>
     <hr>
         <div class="form-group">
-            <input id="reg-input" type ="text" class="form-control" placeholder="Änvändarnamn">
+            <input name="username" [(ngModel)]="model.username" id="reg-input" type ="text" class="form-control" placeholder="Änvändarnamn">
         </div>
         <div class="form-group">
-            <input id="reg-input" type ="text" class="form-control" placeholder="Lösenord">
+            <input name="password" [(ngModel)]="model.password" id="reg-input" type ="text" class="form-control" placeholder="Lösenord">
         </div>
 
         <div class="form-group text-center mt-4">
             <button id="reg-button" class="btn btn-success " type="submit">BLI MEDLEM NU</button>
-            <button id="reg-button"  class="btn btn-success " type="button">INTE NU</button>
+            <button (click)="cancel()" id="reg-button"  class="btn btn-success " type="button">INTE NU</button>
         </div>
 </form>

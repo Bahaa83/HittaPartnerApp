@@ -5,8 +5,12 @@ nav{
 .nav-link
 {
     color:black !important ;
+    text-decoration: none;
+    margin-left: 30px;
 }
-
+.form-control{
+    border: solid black 1px;
+}
 .nav-link:hover, .nav-link:focus {
     text-decoration: none;
     color: red !important;

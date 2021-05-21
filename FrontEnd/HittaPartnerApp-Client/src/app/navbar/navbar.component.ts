@@ -18,4 +18,14 @@ login(){
     error=>{console.log('Kunde inte logga in');}
   )
 }
+// Fonktion som hämtar tilbacka token som vi här fåt tillbaka med inloggnings reguest från local storage,
+// om token är not null retunerar true annars fals.
+loggedIn(){
+  const token=localStorage.getItem('token');
+  return !!token
+}
+loggedOut(){
+  localStorage.removeItem('token');
+  console.log('Du är utloggad')
+}
 }

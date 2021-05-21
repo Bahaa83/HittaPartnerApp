@@ -1,24 +1,49 @@
 
-<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light ">
   <div class="container-fluid">
     <a class="navbar-brand" style="color: red;font-size:2.25rem;font-family:OpenSans-ExtraBold;font-weight:bolder;" href="#"><i class="fa fa-heart" aria-hidden="true"></i>HITTA PARTNER<i class="fa fa-heart" aria-hidden="true"></i></a>
     
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0"style="font-family:OpenSans-Bold">
-        <li class="nav-item">
-          <a class="nav-link "  href="#">HEM</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">SÖK</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">BLI MEDLEM</a>
-        </li>
-      </ul>
-      <form (ngSubmit)="login()" #LoginForm="ngForm" class="d-flex">
-        <input  name="username" required class="form-control me-2" type="text" [(ngModel)]="model.username" placeholder="användarenamn" aria-label="användarenamn">
-        <input  name="password" required class="form-control me-2" type="password" [(ngModel)]="model.password" placeholder="lösenord" aria-label="lösenord">
-        <input [disabled]="!LoginForm.valid" style="font-family:OpenSans-Bold;color: black;" type="submit" class="btn btn-outline-success" type="submit" value="LOGGA IN">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0 "style=" font-family:OpenSans-Bold">
+              <li class="nav-item">
+                <a class="nav-link "  href="#">HEM</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">SÖK</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">CHATT</a>
+              </li>
+              <li class="nav-item">
+                <a *ngIf="!loggedIn" class="nav-link" href="#">BLI MEDLEM</a>
+              </li>
+              <li class="nav-item">
+                <a *ngIf="loggedIn()" (click)="loggedOut()" class="nav-link" href="#" >LOGGA UT</a>
+              </li>
+          </ul>
+      <div class="dropdown">
+              <a *ngIf="loggedIn()" style="font-family:OpenSans-Bold" class="dropdown-toggle text-dark  nav-link" >
+                Välkommen
+              </a>
+            
+              <ul class="dropdown-menu" >
+                    <li>
+                      <a class="dropdown-item">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>MIN PROFIL
+                      </a>
+                    </li>
+                <div class="dropdown-divider"></div>
+                    <li>
+                      <a class="dropdown-item">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>LOGGA UT
+                      </a>
+                    </li>
+              </ul>
+      </div>
+      <form *ngIf="!loggedIn()" (ngSubmit)="login()" #LoginForm="ngForm" class="d-flex">
+            <input  name="username" required class="form-control me-2" type="text" [(ngModel)]="model.username" placeholder="användarenamn" aria-label="användarenamn">
+            <input  name="password" required class="form-control me-2" type="password" [(ngModel)]="model.password" placeholder="lösenord" aria-label="lösenord">
+            <input [disabled]="!LoginForm.valid" style="font-family:OpenSans-Bold;color: black;" type="submit" class="btn btn-outline-success" type="submit" value="LOGGA IN">
       </form>
     </div>
   </div>

@@ -3,12 +3,10 @@
    margin:3px 0 0 5px;
    color: #eee !important;
 }
-#reg-input
-{
-    margin-top: 4px;
-}
+
 #reg-button:hover{
     text-decoration: none;
     color: #eee !important;
     background:green !important
 }
+

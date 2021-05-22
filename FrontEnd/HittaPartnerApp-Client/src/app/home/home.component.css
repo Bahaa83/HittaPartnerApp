@@ -1,3 +1,4 @@
+
 .btn:hover {
     text-decoration: none;
     color: #eee !important;
@@ -8,3 +9,14 @@
       {
         margin-top: 100px;
       }
+      .opacity-background
+      {
+        
+        background-color: #eee;
+        opacity: 0.7;
+        height: 200px;
+        margin-top: 165px;
+        
+        
+      }
+      

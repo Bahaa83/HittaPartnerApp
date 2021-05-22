@@ -1,17 +1,22 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" >
-    <h2 class="text-center texet-dark" style="font-weight: bolder; color:red !important">
-          Din partner väntar på dig
-    </h2>
-    <hr>
-        <div   class="form-group">
-            <input name="username" [(ngModel)]="model.username" id="reg-input" type ="text" class="form-control" placeholder="Änvändarnamn">
-        </div>
-        <div  class="form-group">
-            <input name="password" [(ngModel)]="model.password" id="reg-input" type ="text" class="form-control" placeholder="Lösenord">
-        </div>
 
-        <div class="form-group text-center mt-4">
-            <button id="reg-button" class="btn btn-success " type="submit">BLI MEDLEM NU</button>
-            <button  (click)="cancel()" id="reg-button"  class="btn btn-success " type="button">INTE NU</button>
-        </div>
-</form>
+    <form #registerForm="ngForm" (ngSubmit)="register()" style="border:solid 1.5px red;border-radius: 2px ; box-shadow: 3px 3px 3px white;">
+        
+                <h2 class="text-center texet-dark" style="font-weight: bolder;font-size: 3rem; color:white !important ;">
+                    <p>Din partner väntar på dig</p>
+                </h2>
+            
+                <hr>
+                    <div   class="form-group" style="margin:2px 4px">
+                        <input name="username" [(ngModel)]="model.username" id="reg-input" type ="text" class="form-control" placeholder="Änvändarnamn">
+                    </div>
+                    <div  class="form-group"style="margin:2px 4px">
+                        <input name="password" [(ngModel)]="model.password" id="reg-input" type ="text" class="form-control" placeholder="Lösenord">
+                    </div>
+
+                    <div class="form-group text-center"style="margin:10px 0;">
+                        <button id="reg-button" class="btn btn-success " type="submit">BLI MEDLEM NU</button>
+                        <button  (click)="cancel()" id="reg-button"  class="btn btn-success " type="button">INTE NU</button>
+                    </div>
+                
+    </form>
+

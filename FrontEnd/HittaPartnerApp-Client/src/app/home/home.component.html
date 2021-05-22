@@ -1,12 +1,17 @@
 <div class="container">
-        <div *ngIf="!registerMode" class="text-center mt-5">
-                <h2 style=" font-weight: bolder ;color:red !important;">Hitta den bäst att dela livet med  </h2>
-                <h3 style=" font-weight: bolder ;color:red !important; margin-top: 10px;">Hitta kärleken</h3>
-                <h4 style="margin-top: 30px;">Föreställ dig ditt liv med en partner som passar dig,du är ett steg borta från att uppnå detta</h4>
-            <div  style="margin-top: 75px;" class="text-center">
-                  <button (click)="registerToggle()" class="btn btn-success btn-lg mt-8"style="color:#eee !important">BLI MEDLEM</button>
-            </div>
-        </div>
+        <div *ngIf="!registerMode">
+                <div class="opacity-background">
+                        <div  class="text-center mt-10">
+                                <p style="font-size:50px;font-weight: bolder;color:red !important;opacity:1;">Hitta den bäst att dela livet med </p>
+                                <p style="font-size:3.5rem;color:red !important;opacity:1;">Hitta kärleken</p>
+                                        <h4 style="margin:20px 0;font-size:1.8rem;color: black !important;">Föreställ dig ditt liv med en partner som passar dig,du är ett steg borta från att uppnå detta</h4>
+                        </div>
+                </div>
+                                <div  style="margin-top: 50px;" class="text-center">
+                                        <button (click)="registerToggle()" class="btn btn-success btn-lg mt-8"style="color:#eee !important">BLI MEDLEM</button>
+                                </div>
+         </div>
+  
 
       <div *ngIf="registerMode" class="container" id="reg-temp">
               <div class="row justify-content-center">

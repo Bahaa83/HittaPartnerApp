@@ -1,8 +1,19 @@
 .mainContent
 {
    width: 98%;
-   height: 850px;
+   height: 800px;
    margin: 0 1%;
-    background-image: url('../assets/images/Backgrund.jpg');
-    background-position: center;
+   background: url('../assets/images/Hem-background.jpg') no-repeat center 20%;
+    background-size: cover;
+
+}
+.mainContent
+{
+    width: 98%;
+    margin: 0 1%;
+}
+#container-text
+{
+width: 100%;
+margin: 0;
 }

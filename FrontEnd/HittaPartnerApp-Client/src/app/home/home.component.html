@@ -3,7 +3,7 @@
                 <h2 style=" font-weight: bolder ;color:red !important;">Hitta den bäst att dela livet med  </h2>
                 <h3 style=" font-weight: bolder ;color:red !important; margin-top: 10px;">Hitta kärleken</h3>
                 <h4 style="margin-top: 30px;">Föreställ dig ditt liv med en partner som passar dig,du är ett steg borta från att uppnå detta</h4>
-            <div  style="margin-top: 100px;" class="text-center">
+            <div  style="margin-top: 75px;" class="text-center">
                   <button (click)="registerToggle()" class="btn btn-success btn-lg mt-8"style="color:#eee !important">BLI MEDLEM</button>
             </div>
         </div>
@@ -11,7 +11,7 @@
       <div *ngIf="registerMode" class="container" id="reg-temp">
               <div class="row justify-content-center">
                       <div class="col-4">
-                           <app-register></app-register>
+                           <app-register (cancelRegister)="cancleRegister($event)"></app-register>
                       </div>
               </div>
 

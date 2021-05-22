@@ -20,11 +20,7 @@ constructor(private http:HttpClient) { }
   
   }
 register(model:any){
-  return this.http.post(this.baseUrl+'Register',model).pipe(
-    map((respons:any)=>{
-      
-    })
-  )
+  return this.http.post(this.baseUrl+'Register',model)
 }
 
 }

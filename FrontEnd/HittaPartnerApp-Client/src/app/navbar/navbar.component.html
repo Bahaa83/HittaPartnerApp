@@ -14,9 +14,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">CHATT</a>
               </li>
-              <li class="nav-item">
-                <a *ngIf="!loggedIn" class="nav-link" href="#">BLI MEDLEM</a>
-              </li>
+             
               <li class="nav-item">
                 <a *ngIf="loggedIn()" (click)="loggedOut()" class="nav-link" href="#" >LOGGA UT</a>
               </li>

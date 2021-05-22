@@ -14,5 +14,7 @@ registerMode:boolean=false;
   registerToggle(){
     this.registerMode=!this.registerMode;
   }
-
+  cancleRegister(mode:boolean){
+    this.registerMode=mode;
+  }
 }

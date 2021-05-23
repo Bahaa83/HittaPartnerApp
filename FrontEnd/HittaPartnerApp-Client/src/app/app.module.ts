@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AccountService } from './_services/account.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { AlertifyService } from './_services/alertify.service';
 
 
 
@@ -25,7 +26,7 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AccountService],
+  providers: [AccountService,AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

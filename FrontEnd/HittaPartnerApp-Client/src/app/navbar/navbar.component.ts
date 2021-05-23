@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
-
+import  * as alertify from 'alertifyjs';
+import { AlertifyService } from '../_services/alertify.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -8,14 +9,14 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavbarComponent implements OnInit {
 model:any={}
-  constructor(private authService:AccountService) { }
+  constructor(private authService:AccountService,private altertify:AlertifyService) { }
 
   ngOnInit() {
   }
 login(){
   this.authService.login(this.model).subscribe(
-    next=>{console.log('Logga in framgångsrikt');},
-    error=>{console.log(error);}
+    next=>{this.altertify.success('Logga in framgångsrikt');},
+    error=>{this.altertify.error(error);}
   )
 }
 // Fonktion som hämtar tilbacka token som vi här fåt tillbaka med inloggnings reguest från local storage,
@@ -26,6 +27,6 @@ loggedIn(){
 }
 loggedOut(){
   localStorage.removeItem('token');
-  console.log('Du är utloggad')
+  this.altertify.message('Du är utloggad')
 }
 }

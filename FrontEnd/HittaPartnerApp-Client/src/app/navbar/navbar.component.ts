@@ -15,7 +15,7 @@ model:any={}
 login(){
   this.authService.login(this.model).subscribe(
     next=>{console.log('Logga in framgångsrikt');},
-    error=>{console.log('Kunde inte logga in');}
+    error=>{console.log(error);}
   )
 }
 // Fonktion som hämtar tilbacka token som vi här fåt tillbaka med inloggnings reguest från local storage,

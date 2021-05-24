@@ -10,6 +10,7 @@ import { AccountService } from './_services/account.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertifyService } from './_services/alertify.service';
+import { ErrorInceptorProvidor } from './_services/httperor-interceptor.services';
 
 
 
@@ -26,7 +27,7 @@ import { AlertifyService } from './_services/alertify.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AccountService,AlertifyService],
+  providers: [AccountService,ErrorInceptorProvidor,AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,7 +17,7 @@ model: any={}
   register(){
 this.accountServices.register(this.model).subscribe(
   ()=>{this.alertify.success('du är medlem nu')},
-  error=>{this.alertify.error(error)}
+  error=>{ console.log(error)}
   
 )
   }

@@ -114,19 +114,20 @@ namespace HittaPartnerApp.API
             }
             else
             {
-                app.UseExceptionHandler(BuilerExtentions =>
+                app.UseExceptionHandler(option =>
                 {
-                    BuilerExtentions.Run(async context =>
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        var error = context.Features.Get<IExceptionHandlerFeature>();
-                        if (error != null)
+                    option.Run(
+                        async context =>
                         {
-                            context.Response.AddApplicationError(error.Error.Message);
-                            await context.Response.WriteAsync(error.Error.Message);
-                        }
-                    });
-                });
+                            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                            var ex = context.Features.Get<IExceptionHandlerFeature>();
+                            if (ex != null)
+                            {
+                                await context.Response.WriteAsync(ex.Error.Message);
+                            }
+                        });
+                 } );
+                
             }
 
             app.UseHttpsRedirection();

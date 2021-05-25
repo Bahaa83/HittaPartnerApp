@@ -11,6 +11,7 @@ namespace HittaPartnerApp.API.Services.DtoModels
         [Required]
         public string UserName { get; set; }
         [StringLength(10,MinimumLength =4,ErrorMessage ="Låsenördet får inte bestå av mer än tiotecken och inte mindre än fyra")]
+        [Required]
         public string Password { get; set; }
     }
 }

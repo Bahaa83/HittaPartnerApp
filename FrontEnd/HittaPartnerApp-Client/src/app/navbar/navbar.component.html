@@ -21,7 +21,7 @@
           </ul>
       <div class="dropdown">
               <a *ngIf="loggedIn()"  class="dropdown-toggle text-dark nav-link " >
-                Välkommen
+                Välkommen <span class= "userName">{{authService.decodedToken?.unique_name |titlecase}}</span>
               </a>
             
               <ul class="dropdown-menu" >

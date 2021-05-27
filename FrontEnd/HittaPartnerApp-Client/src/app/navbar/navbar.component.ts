@@ -8,7 +8,7 @@ import { AlertifyService } from '../_services/alertify.service';
 })
 export class NavbarComponent implements OnInit {
 model:any={}
-  constructor(private authService:AccountService,private altertify:AlertifyService) { }
+  constructor(public authService:AccountService,private altertify:AlertifyService) { }
 
   ngOnInit() {
   }
@@ -21,8 +21,7 @@ login(){
 // Fonktion som hämtar tilbacka token som vi här fåt tillbaka med inloggnings reguest från local storage,
 // om token är not null retunerar true annars fals.
 loggedIn(){
-  const token=localStorage.getItem('token');
-  return !!token
+ return this.authService.logedIn();
 }
 loggedOut(){
   localStorage.removeItem('token');

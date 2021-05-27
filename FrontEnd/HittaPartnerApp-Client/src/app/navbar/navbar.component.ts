@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
-import  * as alertify from 'alertifyjs';
 import { AlertifyService } from '../_services/alertify.service';
 @Component({
   selector: 'app-navbar',
@@ -16,7 +15,7 @@ model:any={}
 login(){
   this.authService.login(this.model).subscribe(
     next=>{this.altertify.success('Logga in framgångsrikt');},
-    error=>{this.altertify.warning("Fel användarnamn eller Lösenord");}
+    error=>{this.altertify.error(error);}
   )
 }
 // Fonktion som hämtar tilbacka token som vi här fåt tillbaka med inloggnings reguest från local storage,
@@ -27,6 +26,6 @@ loggedIn(){
 }
 loggedOut(){
   localStorage.removeItem('token');
-  this.altertify.message('Du är utloggad')
+  this.altertify.warning('Du är utloggad')
 }
 }

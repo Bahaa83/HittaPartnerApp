@@ -12,11 +12,9 @@ export class HttperorInterceptorServices implements HttpInterceptor{
     intercept(req:HttpRequest<any>,next:HttpHandler){
         return next.handle(req).pipe(
             catchError((error:HttpErrorResponse)=>{
-               const errortest= error.headers.get('application/problem+json');
-               console.log(errortest);
           const errorMessage= this.setError(error);
              this.alertify.warning(errorMessage);
-             console.log(errorMessage);
+             
                return throwError(errorMessage);
                     
                 
@@ -29,7 +27,8 @@ export class HttperorInterceptorServices implements HttpInterceptor{
         let errorMessage='Unknown error occured';
         if(error.error instanceof ErrorEvent){
             //Client side error
-            errorMessage=error.error.message;
+            errorMessage=error.status.toString();
+           
             
         }
             else

@@ -1,16 +1,24 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, throwError } from "rxjs";
+import { throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { AlertifyService } from "./alertify.service";
 
-@Injectable()
+@Injectable({
+    providedIn:'root'
+})
 export class HttperorInterceptorServices implements HttpInterceptor{
-    intercept(req:HttpRequest<any>,next:HttpHandler):Observable<HttpEvent<any>>{
+    constructor (private alertify:AlertifyService){}
+    intercept(req:HttpRequest<any>,next:HttpHandler){
         return next.handle(req).pipe(
             catchError((error:HttpErrorResponse)=>{
-                const errorMessage= this.setError(error);
-                    console.log(errorMessage);
-                    return throwError(errorMessage);
+               const errortest= error.headers.get('application/problem+json');
+               console.log(errortest);
+          const errorMessage= this.setError(error);
+             this.alertify.warning(errorMessage);
+             console.log(errorMessage);
+               return throwError(errorMessage);
+                    
                 
             })
 
@@ -24,13 +32,18 @@ export class HttperorInterceptorServices implements HttpInterceptor{
             errorMessage=error.error.message;
             
         }
-           else{
-               //Server side error
-               if(error.status!==0){
-            errorMessage=error.error;
-               }
-        }
-        return errorMessage
+            else
+            {
+                        if(error.status!==0)
+                        {
+                            //Server side error
+                            
+                            
+                                errorMessage=error.error;
+                            
+                        }
+            }
+        return errorMessage;
         
     }
 }

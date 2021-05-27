@@ -16,7 +16,7 @@ model:any={}
 login(){
   this.authService.login(this.model).subscribe(
     next=>{this.altertify.success('Logga in framgångsrikt');},
-    error=>{console.log(error);}
+    error=>{this.altertify.warning("Fel användarnamn eller Lösenord");}
   )
 }
 // Fonktion som hämtar tilbacka token som vi här fåt tillbaka med inloggnings reguest från local storage,

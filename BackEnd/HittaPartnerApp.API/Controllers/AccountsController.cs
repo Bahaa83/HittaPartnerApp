@@ -64,7 +64,7 @@ namespace HittaPartnerApp.API.Controllers
         public async Task<IActionResult>Login(UserForLoginDto userForLoginDto)
         {
             var userFromRepo = await _repo.Login(userForLoginDto.UserName.ToLower(), userForLoginDto.Password);
-            if (userFromRepo == null) return Unauthorized();
+            if (userFromRepo == null) return Unauthorized("Ogiltigt användarnamn eller lösenord");
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier,userFromRepo.ID),

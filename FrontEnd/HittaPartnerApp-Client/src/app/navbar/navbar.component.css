@@ -23,4 +23,16 @@ nav{
     color: black !important;
     background:#27AE60 !important
       }
+      .dropdown-item,.dropdown-toggle
+      {
+          cursor: pointer;
+      }
+#loginForm
+{
+    margin-left: 250px;
+}
+#dropdown-menu
+{
+    margin-left: 35px;
+}
 /*------------nav--Css--End----------*/

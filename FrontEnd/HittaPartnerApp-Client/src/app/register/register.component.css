@@ -9,4 +9,20 @@
     color: #eee !important;
     background:green !important
 }
-
+#reg-input
+{
+   border: solid 2px gray;
+   
+}
+#reg-input:hover
+{
+    border: solid 2px green !important;
+}
+.regForm
+{
+    background-color: #eee;
+    opacity: 0.9;
+    height: 250px;
+    border-radius: 4px;
+    box-shadow: 0 5px 1px white;
+}

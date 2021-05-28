@@ -4,7 +4,7 @@
     <a class="navbar-brand" style="color: red;font-size:2.25rem;font-weight:bolder;" href="#"><i class="fa fa-heart" aria-hidden="true"></i>HITTA PARTNER<i class="fa fa-heart" aria-hidden="true"></i></a>
     
     <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0 " >
+          <ul *ngIf="loggedIn()" class="navbar-nav me-auto mb-2 mb-md-0 " >
               <li class="nav-item">
                 <a class="nav-link "  href="#">HEM</a>
               </li>
@@ -15,16 +15,14 @@
                 <a class="nav-link" href="#">CHATT</a>
               </li>
              
-              <li class="nav-item">
-                <a *ngIf="loggedIn()" (click)="loggedOut()" class="nav-link" href="#" >LOGGA UT</a>
-              </li>
+             
           </ul>
-      <div class="dropdown">
-              <a *ngIf="loggedIn()"  class="dropdown-toggle text-dark nav-link " >
-                Välkommen <span class= "userName">{{authService.decodedToken?.unique_name |titlecase}}</span>
+      <div dropdown *ngIf="loggedIn()" class="dropdown ">
+              <a  dropdownToggle class="dropdown-toggle text-dark nav-link " >
+                Välkommen {{authService.decodedToken?.unique_name |titlecase}}
               </a>
             
-              <ul class="dropdown-menu" >
+              <ul *dropdownMenu id="dropdown-menu" class="dropdown-menu mt-8 " >
                     <li>
                       <a class="dropdown-item">
                         <i class="fa fa-user-o" aria-hidden="true"></i>MIN PROFIL
@@ -32,14 +30,20 @@
                     </li>
                 <div class="dropdown-divider"></div>
                     <li>
+                      <a (click)="loggedOut()"class="dropdown-item">
+                        <i  class="fa fa-sign-out" aria-hidden="true"></i>LOGGA UT
+                      </a>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li>
                       <a class="dropdown-item">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i>LOGGA UT
+                        <i class="fa fa-password" aria-hidden="true"></i>ÄNDRA LÖSENORD
                       </a>
                     </li>
               </ul>
       </div>
-      <form *ngIf="!loggedIn()" (ngSubmit)="login()" #LoginForm="ngForm" class="d-flex">
-            <input  name="username" required class="form-control me-2" type="text" [(ngModel)]="model.username" placeholder="Användarnamn" aria-label="användarenamn">
+      <form *ngIf="!loggedIn()" (ngSubmit)="login()" #LoginForm="ngForm" id="loginForm" class="d-flex">
+            <input  name="username" required  class="form-control me-2 " type="text" [(ngModel)]="model.username" placeholder="Användarnamn" aria-label="användarenamn">
             <input  name="password" required class="form-control me-2" type="password" [(ngModel)]="model.password" placeholder="Lösenord" aria-label="lösenord">
             <input [disabled]="!LoginForm.valid" style="font-weight: bold;color: #eee !important;" type="submit" class="btn btn-success " type="submit" value="LOGGA IN">
       </form>

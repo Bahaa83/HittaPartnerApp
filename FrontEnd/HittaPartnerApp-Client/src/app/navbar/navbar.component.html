@@ -1,20 +1,24 @@
 
 <nav class="navbar navbar-expand-md navbar-light  bg-light ">
   <div class="container-fluid">
-    <a class="navbar-brand" style="color: red;font-size:2.25rem;font-weight:bolder;" href="#"><i class="fa fa-heart" aria-hidden="true"></i>HITTA PARTNER<i class="fa fa-heart" aria-hidden="true"></i></a>
+    <a class="navbar-brand" style="color: red;font-size:2.25rem;font-weight:bolder;" 
+    [routerLink]="['/home']">
+      <i class="fa fa-heart" aria-hidden="true"></i>HITTA PARTNER<i class="fa fa-heart" aria-hidden="true"></i></a>
     
     <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul *ngIf="loggedIn()" class="navbar-nav me-auto mb-2 mb-md-0 " >
-              <li class="nav-item">
-                <a class="nav-link "  href="#">HEM</a>
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link "  [routerLink]="['/home']"  >HEM</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">SÖK</a>
+              <li class="nav-item"routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/members']"  >SÖK</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">CHATT</a>
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/messages']" >CHATT</a>
               </li>
-             
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/lists']" >MIN LISTA</a>
+              </li>
              
           </ul>
       <div dropdown *ngIf="loggedIn()" class="dropdown ">

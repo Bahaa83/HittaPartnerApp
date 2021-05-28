@@ -5,6 +5,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AccountService } from './_services/account.service';
@@ -15,6 +17,8 @@ import { ErrorInceptorProvidor } from './_services/httperor-interceptor.services
 import { MemberListComponent } from './member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
+import { appRoutes } from './routes';
+
 
 
 
@@ -35,6 +39,7 @@ import { MessagesComponent } from './messages/messages.component';
     FormsModule,
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [AccountService,ErrorInceptorProvidor,AlertifyService],
   bootstrap: [AppComponent]

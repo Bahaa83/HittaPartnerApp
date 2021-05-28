@@ -18,19 +18,21 @@ import { MemberListComponent } from './member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
+import { LoginComponent } from './login/login.component';
 
 
 
 
 @NgModule({
-  declarations: [							
+  declarations: [								
     AppComponent,
       NavbarComponent,
       HomeComponent,
       RegisterComponent,
       MemberListComponent,
       ListsComponent,
-      MessagesComponent
+      MessagesComponent,
+      LoginComponent
    ],
   imports: [
     BrowserModule,

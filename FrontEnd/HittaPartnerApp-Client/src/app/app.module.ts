@@ -20,6 +20,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { LoginComponent } from './login/login.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 
@@ -45,7 +46,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AccountService,ErrorInceptorProvidor,AlertifyService],
+  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

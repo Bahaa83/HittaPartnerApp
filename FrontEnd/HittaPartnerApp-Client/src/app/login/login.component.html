@@ -1,15 +1,30 @@
-<form class="form-signin">
+<div  class="container" id="log-temp">
+     
+  
+        
+              <h2 class="text-center texet-dark" style="font-weight: bolder;font-size: 3rem; color:red !important ;">
+                  <p>Välkommen tilbaka!</p>
+              </h2>
+                      
+                  <hr>
+              <form *ngIf="!loggedIn()" (ngSubmit)="login()" #LoginForm="ngForm" id="loginForm" class="form-group text-center"style="margin:10px 0;">
+                    <div   class="form-group " style="margin:15px 40px">
+                        <input  name="username" required id="reg-input" class="form-control  " type="text" [(ngModel)]="model.username" placeholder="Användarnamn" aria-label="användarenamn">
+                    </div>
+
+                    <div class="form-group" style="margin:15px 40px">
+                        <input  name="password" id="reg-input" required class="form-control" type="password" [(ngModel)]="model.password" placeholder="Lösenord" aria-label="lösenord">
+                    </div>
+                              
+                    <input [disabled]="!LoginForm.valid" style="font-weight: bold;color: #eee !important;" type="submit" class="btn btn-success " type="submit" value="LOGGA IN">
+                    <div style="margin-top: 20px;" routerLinkActive="active">
+                        <a class="resetPasswordLink" [routerLink]="['/resetpassword']">Glömt dina inloggningsuppgifter?</a>
+                    </div>
+
+              </form>
+</div>
+
+                
+
+
  
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">© 2017-2020</p>
-</form>

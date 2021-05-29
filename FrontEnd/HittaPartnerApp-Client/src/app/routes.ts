@@ -4,11 +4,13 @@ import { ListsComponent } from "./lists/lists.component";
 import { LoginComponent } from "./login/login.component";
 import { MemberListComponent } from "./member-list/member-list.component";
 import { MessagesComponent } from "./messages/messages.component";
+import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
 
 export const appRoutes:Routes=[
     {path:'',component:HomeComponent},
     {path:'home',component:HomeComponent},
     {path:'login',component:LoginComponent},
+    {path:'reset',component:ResetpasswordComponent},
     {path:'members',component:MemberListComponent},
     {path:'lists',component:ListsComponent},
     {path:'messages',component:MessagesComponent},

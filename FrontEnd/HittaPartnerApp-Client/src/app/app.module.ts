@@ -19,12 +19,13 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
 import { LoginComponent } from './login/login.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 
 
 @NgModule({
-  declarations: [								
+  declarations: [									
     AppComponent,
       NavbarComponent,
       HomeComponent,
@@ -32,7 +33,8 @@ import { LoginComponent } from './login/login.component';
       MemberListComponent,
       ListsComponent,
       MessagesComponent,
-      LoginComponent
+      LoginComponent,
+      ResetpasswordComponent
    ],
   imports: [
     BrowserModule,

@@ -11,11 +11,12 @@ namespace HittaPartnerApp.API.Services.Data
 {
     public class TrialData
     {
-        private readonly DbContext _dbContext;
+        private readonly HittaPartnerDbContext _dbContext;
 
         public TrialData(HittaPartnerDbContext dbContext)
         {
            _dbContext = dbContext;
+          
         }
         public void TrialUsers()
         {

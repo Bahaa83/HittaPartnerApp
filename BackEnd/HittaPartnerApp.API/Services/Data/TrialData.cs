@@ -1,4 +1,5 @@
-﻿using HittaPartnerApp.Models;
+﻿using HittaPartnerApp.API.Data;
+using HittaPartnerApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
@@ -12,16 +13,16 @@ namespace HittaPartnerApp.API.Services.Data
     {
         private readonly DbContext _dbContext;
 
-        public TrialData(DbContext dbContext)
+        public TrialData(HittaPartnerDbContext dbContext)
         {
            _dbContext = dbContext;
         }
         public void TrialUsers()
         {
             //Läsa alla filen och spara de i userData sen stäng filen
-            var userData = System.IO.File.ReadAllText("Data/UserTrialData.json");
-            //konventrerar filen från json till list av User object.
-            var users = JsonConvert.DeserializeObject<List<User>>(userData);
+            var userData = System.IO.File.ReadAllText("Services/Data/UserTrialData.json");
+             //konventrerar filen från json till list av User object.
+             var users = JsonConvert.DeserializeObject<List<User>>(userData);
             foreach (var user in users)
             {
                 byte[] passwordHash, passwordSalt;

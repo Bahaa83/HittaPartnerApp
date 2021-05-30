@@ -8,5 +8,7 @@ namespace HittaPartnerApp.Models
         public string Description { get; set; }
         public DateTime  DateAdded { get; set; }
         public bool IsMain { get; set; }
+        public string UserID { get; set; }
+        public User user { get; set; }
     }
 }

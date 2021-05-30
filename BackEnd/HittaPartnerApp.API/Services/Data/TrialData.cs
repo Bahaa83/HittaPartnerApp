@@ -16,7 +16,7 @@ namespace HittaPartnerApp.API.Services.Data
         {
            _dbContext = dbContext;
         }
-        public void TrialUser()
+        public void TrialUsers()
         {
             //Läsa alla filen och spara de i userData sen stäng filen
             var userData = System.IO.File.ReadAllText("Data/UserTrialData.json");

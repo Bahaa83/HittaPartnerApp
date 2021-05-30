@@ -46,8 +46,9 @@ namespace HittaPartnerApp.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
-            services.AddScoped<IAuthentication, Authentication>();
             services.AddTransient<TrialData>();
+            services.AddScoped<IAuthentication, Authentication>();
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(Options =>
                 {
@@ -141,7 +142,7 @@ namespace HittaPartnerApp.API
             });
             
             app.UseRouting();
-            seedData.TrialUser();
+            seedData.TrialUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             app.UseAuthorization();

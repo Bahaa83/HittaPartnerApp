@@ -12,6 +12,7 @@ namespace HittaPartnerApp.API.Data
         public HittaPartnerDbContext(DbContextOptions<HittaPartnerDbContext> options) : base(options) { }
         
         public DbSet<User> users { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
 }
 }

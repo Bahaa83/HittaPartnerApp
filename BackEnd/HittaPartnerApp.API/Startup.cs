@@ -1,5 +1,6 @@
 using HittaPartnerApp.API.Data;
 using HittaPartnerApp.API.Helpers;
+using HittaPartnerApp.API.Services.Data;
 using HittaPartnerApp.API.Services.IRepositories;
 using HittaPartnerApp.API.Services.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -46,6 +47,7 @@ namespace HittaPartnerApp.API
             });
             services.AddCors();
             services.AddScoped<IAuthentication, Authentication>();
+            services.AddTransient<TrialData>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(Options =>
                 {
@@ -106,7 +108,7 @@ namespace HittaPartnerApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,TrialData seedData)
         {
             if (env.IsDevelopment())
             {
@@ -137,8 +139,9 @@ namespace HittaPartnerApp.API
                 Options.SwaggerEndpoint("/Swagger/HittaPartnerOpenAPISpec/swagger.json", "Hitta Partner App API");
                 Options.RoutePrefix = "";
             });
-
+            
             app.UseRouting();
+            seedData.TrialUser();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             app.UseAuthorization();

@@ -22,14 +22,14 @@
             <summary>
             Funktion som hämtar alla användaren 
             </summary>
-            <returns>List av users</returns>
+            <returns>List av UserForListDto</returns>
         </member>
         <member name="M:HittaPartnerApp.API.Controllers.UsersController.GetUserByID(System.String)">
             <summary>
             Funktion som hämtar en användare genom Iden
             </summary>
             <param name="userId">Iden av användaren</param>
-            <returns>en user model</returns>
+            <returns>en UserForDetailsDto model</returns>
         </member>
     </members>
 </doc>

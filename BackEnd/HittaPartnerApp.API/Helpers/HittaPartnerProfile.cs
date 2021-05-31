@@ -14,6 +14,7 @@ namespace HittaPartnerApp.API.Helpers
         {
             CreateMap<User, UserForListDto>();
             CreateMap<User, UserForDetailsDto>();
+            CreateMap<Photo, PhotoForDetailsDto>();
         }
     }
 }

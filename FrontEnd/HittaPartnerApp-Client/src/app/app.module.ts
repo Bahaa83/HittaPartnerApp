@@ -21,6 +21,7 @@ import { appRoutes } from './routes';
 import { LoginComponent } from './login/login.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { UserService } from './_services/user.service';
 
 
 
@@ -46,7 +47,7 @@ import { AuthGuard } from './_guards/auth.guard';
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard ],
+  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard,UserService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -142,7 +142,7 @@ namespace HittaPartnerApp.API
             });
             
             app.UseRouting();
-            seedData.TrialUsers();
+            //seedData.TrialUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             app.UseAuthorization();

@@ -4,14 +4,16 @@ using HittaPartnerApp.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HittaPartnerApp.API.Migrations
 {
     [DbContext(typeof(HittaPartnerDbContext))]
-    partial class HittaPartnerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210531120910_läggaTillGender")]
+    partial class läggaTillGender
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

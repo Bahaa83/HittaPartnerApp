@@ -44,7 +44,7 @@ namespace HittaPartnerApp.API.Services.Repositories
 
         public async Task<bool> SaveAll()
         {
-            return await _dbcontext.SaveChangesAsync() >= 0 ? true : false;
+            return await _dbcontext.SaveChangesAsync() > 0 ? true : false;
         }
     }
 }

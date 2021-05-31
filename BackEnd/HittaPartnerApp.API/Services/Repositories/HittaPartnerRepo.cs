@@ -32,7 +32,7 @@ namespace HittaPartnerApp.API.Services.Repositories
 
         public async Task<IEnumerable<User>> GetAllUsers()
         {
-           var users= await _dbcontext.users.ToListAsync();
+           var users= await _dbcontext.users.Include(x=>x.Photos).ToListAsync();
             return users;
         }
 

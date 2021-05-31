@@ -9,7 +9,7 @@ import { map } from "rxjs/operators";
 export class AccountService {
   jwtHelper= new JwtHelperService();
   decodedToken:any;
-baseUrl='https://localhost:44350/api/Accounts/'
+baseUrl='/Accounts/'
 constructor(private http:HttpClient) { }
 
   login(model:any){

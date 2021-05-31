@@ -14,5 +14,11 @@ namespace HittaPartnerApp.API.Helpers
             respons.Headers.Add("Access-Control-Expose-Headers", "Application-Error");
             respons.Headers.Add("Access-Control-Allow-Origin", "*");
         }
+        public static int CalculateAge(this DateTime dateTime)
+        {
+            var age = DateTime.Today.Year - dateTime.Year;
+            if (dateTime.AddYears(age) > DateTime.Today) age--;
+            return age;
+        }
     }
 }

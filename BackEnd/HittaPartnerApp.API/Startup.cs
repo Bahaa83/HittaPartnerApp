@@ -48,7 +48,7 @@ namespace HittaPartnerApp.API
             services.AddCors();
             services.AddTransient<TrialData>();
             services.AddScoped<IAuthentication, Authentication>();
-            
+            services.AddScoped<IHittaPartnerRepo, HittaPartnerRepo>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(Options =>
                 {

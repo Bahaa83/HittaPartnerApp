@@ -12,6 +12,6 @@ namespace HittaPartnerApp.API.Services.IRepositories
         void Delete<T>(T entity) where T : class;
         Task<IEnumerable<User>> GetAllUsers();
         Task<User> GetUserByID(string UserID);
-        Task<bool> Save();
+        Task<bool> SaveAll();
     }
 }

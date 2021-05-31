@@ -12,8 +12,10 @@ namespace HittaPartnerApp.API.Helpers
     {
         public HittaPartnerProfile()
         {
-            CreateMap<User, UserForListDto>();
-            CreateMap<User, UserForDetailsDto>();
+            CreateMap<User, UserForListDto>().ForMember(x => x.PhotoUrl, opt => opt.MapFrom(x => x.Photos.FirstOrDefault(x => x.IsMain).Url));
+            CreateMap<User, UserForDetailsDto>().ForMember(x => x.PhotoUrl, opt => opt.MapFrom(x => x.Photos.FirstOrDefault(x => x.IsMain).Url))
+               
+                
             CreateMap<Photo, PhotoForDetailsDto>();
         }
     }

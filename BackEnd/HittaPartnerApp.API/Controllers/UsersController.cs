@@ -1,4 +1,5 @@
-﻿using HittaPartnerApp.API.Services.IRepositories;
+﻿using AutoMapper;
+using HittaPartnerApp.API.Services.IRepositories;
 using HittaPartnerApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -19,10 +20,12 @@ namespace HittaPartnerApp.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IHittaPartnerRepo _hittaPartnerRepo;
+        private readonly IMapper _mapper;
 
-        public UsersController(IHittaPartnerRepo hittaPartnerRepo)
+        public UsersController(IHittaPartnerRepo hittaPartnerRepo,IMapper mapper)
         {
             _hittaPartnerRepo = hittaPartnerRepo;
+           _mapper = mapper;
         }
         /// <summary>
         /// Funktion som hämtar alla användaren 

@@ -53,7 +53,7 @@ namespace HittaPartnerApp.API
             services.AddTransient<TrialData>();
             services.AddScoped<IAuthentication, Authentication>();
             services.AddScoped<IHittaPartnerRepo, HittaPartnerRepo>();
-            services.AddAutoMapper();
+            services.AddAutoMapper(typeof(HittaPartnerProfile));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(Options =>
                 {

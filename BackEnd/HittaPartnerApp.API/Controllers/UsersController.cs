@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HittaPartnerApp.API.Services.DtoModels;
 using HittaPartnerApp.API.Services.IRepositories;
 using HittaPartnerApp.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -30,27 +31,29 @@ namespace HittaPartnerApp.API.Controllers
         /// <summary>
         /// Funktion som hämtar alla användaren 
         /// </summary>
-        /// <returns>List av users</returns>
+        /// <returns>List av UserForListDto</returns>
         [HttpGet("GetAllUsers")]
-        [ProducesResponseType(200,Type =typeof(List<User>))]
+        [ProducesResponseType(200,Type =typeof(List<UserForListDto>))]
         [ProducesDefaultResponseType]
         public async Task<ActionResult> GetAllUsers()
         {
             var users = await _hittaPartnerRepo.GetAllUsers();
-            return Ok(users);
+            var userToReturn = _mapper.Map<UserForListDto>(users);
+            return Ok(userToReturn);
         }
         /// <summary>
         /// Funktion som hämtar en användare genom Iden
         /// </summary>
         /// <param name="userId">Iden av användaren</param>
-        /// <returns>en user model</returns>
+        /// <returns>en UserForDetailsDto model</returns>
         [HttpGet("GetUserByID")]
-        [ProducesResponseType(200, Type = typeof(User))]
+        [ProducesResponseType(200, Type = typeof(UserForDetailsDto))]
         [ProducesDefaultResponseType]
         public async Task<ActionResult>GetUserByID(string userId)
         {
             var user = await _hittaPartnerRepo.GetUserByID(userId);
-            return Ok(user);
+            var userToreturn = _mapper.Map<UserForDetailsDto>(user);
+            return Ok(userToreturn);
         }
     }
 }

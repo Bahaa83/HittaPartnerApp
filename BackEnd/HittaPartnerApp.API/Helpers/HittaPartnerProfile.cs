@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using HittaPartnerApp.API.Services.DtoModels;
+using HittaPartnerApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,8 @@ namespace HittaPartnerApp.API.Helpers
     {
         public HittaPartnerProfile()
         {
-            
+            CreateMap<User, UserForListDto>();
+            CreateMap<User, UserForDetailsDto>();
         }
     }
 }

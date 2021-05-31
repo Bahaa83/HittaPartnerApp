@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { ListsComponent } from "./lists/lists.component";
 import { LoginComponent } from "./login/login.component";
-import { MemberListComponent } from "./member-list/member-list.component";
+import { MemberListComponent } from "./members/member-list/member-list.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
 import { AuthGuard } from "./_guards/auth.guard";

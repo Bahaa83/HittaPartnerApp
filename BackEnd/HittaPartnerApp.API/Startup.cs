@@ -1,3 +1,4 @@
+using AutoMapper;
 using HittaPartnerApp.API.Data;
 using HittaPartnerApp.API.Helpers;
 using HittaPartnerApp.API.Services.Data;
@@ -52,6 +53,7 @@ namespace HittaPartnerApp.API
             services.AddTransient<TrialData>();
             services.AddScoped<IAuthentication, Authentication>();
             services.AddScoped<IHittaPartnerRepo, HittaPartnerRepo>();
+            services.AddAutoMapper();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(Options =>
                 {

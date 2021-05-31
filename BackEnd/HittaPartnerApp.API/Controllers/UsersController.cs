@@ -38,7 +38,7 @@ namespace HittaPartnerApp.API.Controllers
         public async Task<ActionResult> GetAllUsers()
         {
             var users = await _hittaPartnerRepo.GetAllUsers();
-            var userToReturn = _mapper.Map<UserForListDto>(users);
+            var userToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
             return Ok(userToReturn);
         }
         /// <summary>

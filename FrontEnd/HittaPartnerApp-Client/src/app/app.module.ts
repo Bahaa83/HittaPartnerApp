@@ -22,6 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_services/user.service';
+import { MemberCardComponent } from './members/member-card/member-card.component';
 
 
 
@@ -36,7 +37,9 @@ import { UserService } from './_services/user.service';
       ListsComponent,
       MessagesComponent,
       LoginComponent,
-      ResetpasswordComponent
+      ResetpasswordComponent,
+      MemberCardComponent,
+      MemberListComponent
    ],
   imports: [
     BrowserModule,

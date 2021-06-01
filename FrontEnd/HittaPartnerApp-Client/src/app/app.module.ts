@@ -25,7 +25,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_services/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -55,6 +55,7 @@ export function tokenGetter() {
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
+    TabsModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

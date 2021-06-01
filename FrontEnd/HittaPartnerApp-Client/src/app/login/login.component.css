@@ -26,3 +26,11 @@
 {
     cursor: pointer;
 }
+.loginBg
+{
+    width: 98%;
+    height: 800px;
+    background: url('src/assets/images/Hem-background.jpg') no-repeat center 20%;
+    background-size: cover;
+    position:absolute;
+}

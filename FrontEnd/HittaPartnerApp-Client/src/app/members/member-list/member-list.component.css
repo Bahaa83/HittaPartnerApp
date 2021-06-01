@@ -1,0 +1,7 @@
+.membersBg
+{
+    width: 98%;
+    background: url('src/assets/images/pexels-juan-pablo-serrano-arenas-1242348.jpg') no-repeat center 20%;
+    background-size: cover;
+    position:absolute;
+}

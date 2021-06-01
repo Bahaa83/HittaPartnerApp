@@ -14,10 +14,19 @@
        
         background-color: #eee;
         opacity: 0.7;
-        height: 200px;
-        margin-top: 165px;
+        height: 250px;
+        margin-top: -30px;
         
         
       }
      
-      
+      #container
+      {
+        width: 98%;
+        height: 800px;
+   
+        background: url('src/assets/images/Hem-background.jpg') no-repeat center 20%;
+        background-size: cover;
+        position:absolute;
+      }
+  

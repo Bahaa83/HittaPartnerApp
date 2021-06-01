@@ -1,0 +1,43 @@
+.card-img-top
+{
+    width: 100%;
+    height: 13vw;
+    object-fit: initial;
+    margin-top: -1px;
+    
+}
+.card
+{
+    width: 160px;
+   
+}
+
+.card:hover img{
+    transform: scale(1.2,1.2);
+    transition: 500ms ease-out;
+    opacity: 0.9;
+}
+.wrapper
+{
+    overflow: hidden;
+    position: relative;
+}
+.members-icons
+{
+    position: absolute;
+    bottom: -30%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+}
+.wrapper:hover .members-icons
+{
+    bottom: 0;
+    opacity: 1;
+}
+.animate
+{
+    transition: all 0.3s ease-in-out;
+}

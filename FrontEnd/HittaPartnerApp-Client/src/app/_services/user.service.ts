@@ -17,6 +17,6 @@ return this.http.get<User[]>(this.baseUrl+'GetAllUsers');
 }
 getUserById(id:string):Observable<User>
 {
-return this.http.get<User>(this.baseUrl+'GetUserByID'+id);
+return this.http.get<User>(this.baseUrl+'GetUserByID?userId='+id);
 }
 }

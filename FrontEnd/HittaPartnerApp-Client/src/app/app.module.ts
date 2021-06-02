@@ -29,6 +29,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { NgxGalleryModule } from 'ngx-gallery-9';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 
 
@@ -50,7 +51,8 @@ export function tokenGetter() {
       ResetpasswordComponent,
       MemberCardComponent,
       MemberListComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
   imports: [
     BrowserModule,

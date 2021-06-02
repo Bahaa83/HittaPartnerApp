@@ -22,10 +22,11 @@ export const appRoutes:Routes=[
             {path:'members',component:MemberListComponent,resolve:{
                 users:MemberListResolver
             }},
+            {path:'member/edit',component:MemberEditComponent},
             {path:'member/:id',component:MemberDetailComponent,resolve:{
                 user:MemberDetailResolver
             }},
-            {path:'member/edit',component:MemberEditComponent},
+         
             {path:'lists',component:ListsComponent},
             {path:'messages',component:MessagesComponent}
         ]

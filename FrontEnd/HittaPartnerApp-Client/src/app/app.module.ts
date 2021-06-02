@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-
+import { NgxGalleryModule } from 'ngx-gallery-9';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AccountService } from './_services/account.service';
@@ -28,7 +28,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
-import { NgxGalleryModule } from 'ngx-gallery-9';
+
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 
@@ -72,7 +72,7 @@ export function tokenGetter() {
       },
     }),
   ],
-  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard,UserService,MemberDetailResolver,MemberListResolver ],
+  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard,UserService,MemberDetailResolver,MemberListResolver,MemberEditComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

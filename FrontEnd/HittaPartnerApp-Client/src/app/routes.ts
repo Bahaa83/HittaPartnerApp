@@ -3,6 +3,7 @@ import { HomeComponent } from "./home/home.component";
 import { ListsComponent } from "./lists/lists.component";
 import { LoginComponent } from "./login/login.component";
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
+import { MemberEditComponent } from "./members/member-edit/member-edit.component";
 import { MemberListComponent } from "./members/member-list/member-list.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
@@ -24,6 +25,7 @@ export const appRoutes:Routes=[
             {path:'member/:id',component:MemberDetailComponent,resolve:{
                 user:MemberDetailResolver
             }},
+            {path:'member/edit',component:MemberEditComponent},
             {path:'lists',component:ListsComponent},
             {path:'messages',component:MessagesComponent}
         ]

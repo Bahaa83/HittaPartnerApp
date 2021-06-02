@@ -9,6 +9,7 @@ import { MessagesComponent } from "./messages/messages.component";
 import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
 import { AuthGuard } from "./_guards/auth.guard";
 import { MemberDetailResolver } from "./_resolvers/member-detail.resolver";
+import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { MemberListResolver } from "./_resolvers/member-list.resolver";
 
 export const appRoutes:Routes=[
@@ -22,7 +23,9 @@ export const appRoutes:Routes=[
             {path:'members',component:MemberListComponent,resolve:{
                 users:MemberListResolver
             }},
-            {path:'member/edit',component:MemberEditComponent},
+            {path:'member/edit',component:MemberEditComponent,resolve:{
+                user:MemberEditResolver
+            }},
             {path:'member/:id',component:MemberDetailComponent,resolve:{
                 user:MemberDetailResolver
             }},

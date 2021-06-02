@@ -7,15 +7,15 @@ import { AlertifyService } from "../_services/alertify.service";
 import { UserService } from "../_services/user.service";
 
 @Injectable()
-export class MemberDetailResolver implements Resolve<User> {
+export class MemberListResolver implements Resolve<User[]> {
     constructor(private userService:UserService,private router:Router,private alertify:AlertifyService) {
         
     }
-    resolve(route:ActivatedRouteSnapshot):Observable<User>{
-        return this.userService.getUserById(route.params['id']).pipe(
+    resolve(route:ActivatedRouteSnapshot):Observable<User[]>{
+        return this.userService.getAllUsers().pipe(
             catchError(error=>{
                 this.alertify.error("Det är ett problem att visa data");
-                this.router.navigate(['/member']);
+                this.router.navigate(['']);
                 return of
             })
         )

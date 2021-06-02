@@ -8,15 +8,27 @@ import { MessagesComponent } from "./messages/messages.component";
 import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
 import { AuthGuard } from "./_guards/auth.guard";
 import { MemberDetailResolver } from "./_resolvers/member-detail.resolver";
+import { MemberListResolver } from "./_resolvers/member-list.resolver";
 
 export const appRoutes:Routes=[
     
     {path:'',component:HomeComponent},
+    {
+        path:'',
+        runGuardsAndResolvers:'always',
+        canActivate:[AuthGuard],
+        children:[
+            {path:'members',component:MemberListComponent,resolve:{
+                users:MemberListResolver
+            }},
+            {path:'member/:id',component:MemberDetailComponent,resolve:{
+                user:MemberDetailResolver
+            }},
+            {path:'lists',component:ListsComponent},
+            {path:'messages',component:MessagesComponent}
+        ]
+    },
     {path:'login',component:LoginComponent},
     {path:'reset',component:ResetpasswordComponent},
-    {path:'members',component:MemberListComponent,canActivate:[AuthGuard]},
-    {path:'member/:id',component:MemberDetailComponent,canActivate:[AuthGuard],resolve:{user:MemberDetailResolver}},
-    {path:'lists',component:ListsComponent,canActivate:[AuthGuard]},
-    {path:'messages',component:MessagesComponent,canActivate:[AuthGuard]},
     {path:'**',redirectTo:'',pathMatch:'full'}
 ];

@@ -10,14 +10,14 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-  user: User | undefined;
+  user!: User; 
   constructor(private userService : UserService,private alertify:AlertifyService,private rout:ActivatedRoute) { }
 
   ngOnInit() {
     //this.loadUser();
     this.rout.data.subscribe(data=>{
-      this.user=data['user'];
-    })
+      this.user=data['user']
+    });
   }
   //loadUser()
   //{

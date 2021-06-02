@@ -28,7 +28,9 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
-import { NgxGalleryModule } from 'ngx-gallery';
+import { NgxGalleryModule } from 'ngx-gallery-9';
+
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');

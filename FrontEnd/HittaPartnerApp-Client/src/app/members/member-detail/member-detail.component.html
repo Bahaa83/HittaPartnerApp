@@ -35,7 +35,7 @@
             <div class="tab-Panel">
              
                 <tabset class="member-tabset">
-                  <tab heading="Jag är{{user.knownAs}}">
+                  <tab heading="Om {{user.knownAs}}">
                     <h4>Om mig</h4>
                     <p>{{user.introduction}}</p>
                     <h4>Letar efter</h4>
@@ -45,7 +45,7 @@
                   </tab>
                   <tab heading="Mina bilder">
                   <h4>Mina bilder</h4>
-                  <p>Mina bilder</p>
+                  <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
                   </tab>
                   <tab heading="Meddelanden">
                     <h4>Meddelanden</h4>

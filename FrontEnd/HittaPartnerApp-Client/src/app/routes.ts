@@ -7,6 +7,7 @@ import { MemberListComponent } from "./members/member-list/member-list.component
 import { MessagesComponent } from "./messages/messages.component";
 import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
 import { AuthGuard } from "./_guards/auth.guard";
+import { MemberDetailResolver } from "./_resolvers/member-detail.resolver";
 
 export const appRoutes:Routes=[
     
@@ -14,7 +15,7 @@ export const appRoutes:Routes=[
     {path:'login',component:LoginComponent},
     {path:'reset',component:ResetpasswordComponent},
     {path:'members',component:MemberListComponent,canActivate:[AuthGuard]},
-    {path:'member/:id',component:MemberDetailComponent,canActivate:[AuthGuard]},
+    {path:'member/:id',component:MemberDetailComponent,canActivate:[AuthGuard],resolve:{user:MemberDetailResolver}},
     {path:'lists',component:ListsComponent,canActivate:[AuthGuard]},
     {path:'messages',component:MessagesComponent,canActivate:[AuthGuard]},
     {path:'**',redirectTo:'',pathMatch:'full'}

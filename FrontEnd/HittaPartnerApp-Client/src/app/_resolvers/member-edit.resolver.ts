@@ -16,7 +16,7 @@ export class MemberEditResolver implements Resolve<User> {
         return this.userService.getUserById(this.authservice.decodedToken.nameid).pipe(
             catchError(error=>{
                 this.alertify.error("Det är ett problem att visa data");
-                this.router.navigate(['/member']);
+                this.router.navigate(['/memberedit']);
                 return of
             })
         )

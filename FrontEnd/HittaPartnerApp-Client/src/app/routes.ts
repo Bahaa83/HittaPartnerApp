@@ -23,7 +23,7 @@ export const appRoutes:Routes=[
             {path:'members',component:MemberListComponent,resolve:{
                 users:MemberListResolver
             }},
-            {path:'member/edit',component:MemberEditComponent,resolve:{
+            {path:'memberedit',component:MemberEditComponent,resolve:{
                 user:MemberEditResolver
             }},
             {path:'member/:id',component:MemberDetailComponent,resolve:{

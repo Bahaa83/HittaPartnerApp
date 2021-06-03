@@ -7,12 +7,14 @@
             </h2>
         </div>
         <div class="col-sm-8">
+        <div *ngIf="editForm.dirty" >
            <div class="alert alert-info">
             <strong>Obs! </strong>
             Ändringar måste sparas i din profil
            </div>
 
         </div>
+    </div>
       <div class="col-sm-4 mt-3">
         <div class="card">
           <img class="card-img-top img-thumbnail" src="{{user.photoUrl}}" alt="{{user.knownAs}}">
@@ -37,7 +39,7 @@
           <div class="card-footer">
             <div>
               
-              <button class="btn btn-success  ml-2 w-100">Ändra</button>
+              <button form="editForm" [disabled]="!editForm.dirty" class="btn btn-success  ml-2 w-100">Ändra</button>
             </div>
           </div>
         </div>
@@ -46,7 +48,9 @@
         <div class="tab-Panel">
           <tabset class="member-tabset">
             <tab heading="Mina info">
+            <form id="editForm" #editForm="ngForm" (ngSubmit)="updateUser()">
               <div class="card">
+                  
                   <div class="card-header">
                       <h4>Introducera mig själv</h4>
                     </div>
@@ -56,7 +60,7 @@
                      </textarea>
                     </div>
               </div>
-              
+            
               <div class="card mt-4">
                   <div class="card-header">
                       <h4>Leta efter</h4>
@@ -97,10 +101,12 @@
                             </div>
                         </div>
                 </div>
+           
           </div>
   
-              
-            </tab>
+        </form>      
+        </tab>
+      
         <tab heading="Mina bilder ">
   
         <!----  <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>-->

@@ -13,13 +13,7 @@
     border-top: none;
 }
 
-     .btn-success:hover{
-        text-decoration: none;
-        color: black !important;
-        background:pink !important;
-        letter-spacing:0.5px;
-        
-      }
+    
       .btn-success{
         text-decoration: none;
         letter-spacing:0.5px;

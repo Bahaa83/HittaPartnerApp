@@ -1,4 +1,3 @@
-
 .img-thumbnail{
     margin: 25px;
     width: 85%;
@@ -8,25 +7,41 @@
 .card-body{
     padding: 0 25px;
     }
-   
-    
-         
-         
-    
-    p{
-        letter-spacing:0.5px;
-        font-weight:bold;
-        font-family:'JF Flat';
-        font-size:1.0rem
-    }
-    strong,h4,span{
-        letter-spacing:0.5px;
-        font-weight:bolder;
-        font-family:'JF Flat';
-        font-size:1.1rem;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        text-align: left;
-    
-        
-    }
+.card-footer{
+    padding: 10px 15px;
+    background-color: #fff;
+    border-top: none;
+}
+p{
+    letter-spacing:0.5px;
+    font-weight:bold;
+    font-family:'JF Flat';
+    font-size:1.0rem
+}
+strong,span{
+    letter-spacing:0.5px;
+    font-weight:bolder;
+    font-family:'JF Flat';
+    font-size:1.1rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+ 
+}
+h4,textarea,label,input{
+    letter-spacing:0.5px;
+    font-weight:bolder;
+    font-family:'JF Flat';
+    font-size:1.1rem;
+    margin-top: -2px;
+    margin-bottom: 10px;
+    text-align: left;
+
+}
+h2{
+    letter-spacing:0.5px;
+    font-weight:bolder;
+    font-family:'JF Flat';
+    font-size:2.5em;
+
+}

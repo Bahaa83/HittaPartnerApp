@@ -19,4 +19,7 @@ getUserById(id:string):Observable<User>
 {
 return this.http.get<User>(this.baseUrl+'GetUserByID?userId='+id);
 }
+updateUser(id:string,user:User){
+  return this.http.put(this.baseUrl+'UpdateUser?userID=' +id,user)
+}
 }

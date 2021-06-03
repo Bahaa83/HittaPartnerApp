@@ -31,6 +31,7 @@ import { MemberListResolver } from './_resolvers/member-list.resolver';
 
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 
 
@@ -73,7 +74,7 @@ export function tokenGetter() {
       },
     }),
   ],
-  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard,UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver ],
+  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard,PreventUnsavedChangesGuard,UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

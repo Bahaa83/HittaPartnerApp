@@ -2,6 +2,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Injectable } from '@angular/core';
 import  * as alertify from 'alertifyjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,12 +10,34 @@ export class AlertifyService {
 
 constructor() { }
 
-      confirm(message:string,okCallback:()=>any)
+      confirm(message:string,okCallback:()=>any):any
       {
         alertify.confirm(message,function(e:Event){
           if(e){okCallback()}else{}
-        })
+        }
+        
+        );
       }
+
+      promisifyConfirm(title: string, message: string, options = {}): Promise<ConfirmResult> {
+
+        return new Promise<ConfirmResult>((resolve) => {
+          alertify.confirm(
+            title,
+            message,
+            () => resolve(ConfirmResult.Ok),
+            () => resolve(ConfirmResult.Cancel)).set(Object.assign({}, {
+              closableByDimmer: false,
+              defaultFocus: 'cancel',
+              frameless: false,
+              closable: false
+            }, options));
+        });
+      }
+      
+      
+    
+      
         success(message:string)
         {
           alertify.success(message);
@@ -32,43 +55,37 @@ constructor() { }
           alertify.message(message);
         }
 
-      }
 
-      //defaults
+              //defaults
       
-alertify.defaults = {
+defaults=alertify.defaults = {
   // dialogs defaults
-  autoReset:true,
-  basic:false,
-  closable:true,
-  closableByDimmer:true,
-  invokeOnCloseOff:false,
-  frameless:false,
-  defaultFocusOff:false,
-  maintainFocus:true, // <== global default not per instance, applies to all dialogs
-  maximizable:true,
-  modal:true,
-  movable:true,
-  moveBounded:false,
-  overflow:true,
-  padding: true,
-  pinnable:true,
-  pinned:true,
-  preventBodyShift:false, // <== global default not per instance, applies to all dialogs
-  resizable:true,
-  startMaximized:false,
-  transition:'pulse',
-  transitionOff:false,
-  tabbable:'button:not(:disabled):not(.ajs-reset),[href]:not(:disabled):not(.ajs-reset),input:not(:disabled):not(.ajs-reset),select:not(:disabled):not(.ajs-reset),textarea:not(:disabled):not(.ajs-reset),[tabindex]:not([tabindex^="-"]):not(:disabled):not(.ajs-reset)',  // <== global default not per instance, applies to all dialogs
-
+  autoReset: true,
+    basic: false,
+    closable: true,
+    closableByDimmer: true,
+    frameless: false,
+    maintainFocus: true, // <== global default not per instance, applies to all dialogs
+    maximizable: true,
+    modal: true,
+    movable: true,
+    moveBounded: false,
+    overflow: true,
+    padding: true,
+    pinnable: true,
+    pinned: true,
+    preventBodyShift: false, // <== global default not per instance, applies to all dialogs
+    resizable: true,
+    startMaximized: false,
+    transition: 'pulse',
   // notifier defaults
   notifier:{
   // auto-dismiss wait time (in seconds)  
       delay:2,
   // default position
-      position:'top-right',
+      position:'bottom-right',
   // adds a close button to notifier messages
-      closeButton: true,
+      closeButton: false,
   // provides the ability to rename notifier classes
       classes : {
           base: 'alertify-notifier',
@@ -88,11 +105,11 @@ alertify.defaults = {
   // language resources 
   glossary:{
       // dialogs default title
-      title:'AlertifyJS',
+      title:'Hitta Partner',
       // ok button text
       ok: 'OK',
       // cancel button text
-      cancel: 'Cancel'            
+      cancel: 'Avbryt'            
   },
 
   // theme settings
@@ -104,5 +121,17 @@ alertify.defaults = {
       // class name attached to cancel button 
       cancel:'ajs-cancel'
   },
- 
-};
+  hooks:{
+    // invoked before initializing any dialog
+    preinit:function(){},
+    // invoked after initializing any dialog
+    postinit:function(){},
+},
+}
+
+      }
+      export enum ConfirmResult{
+        Ok=1,
+        Cancel
+      }
+

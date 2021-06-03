@@ -8,6 +8,7 @@ import { MemberListComponent } from "./members/member-list/member-list.component
 import { MessagesComponent } from "./messages/messages.component";
 import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
 import { AuthGuard } from "./_guards/auth.guard";
+import { PreventUnsavedChangesGuard } from "./_guards/prevent-unsaved-changes.guard";
 import { MemberDetailResolver } from "./_resolvers/member-detail.resolver";
 import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { MemberListResolver } from "./_resolvers/member-list.resolver";
@@ -25,7 +26,7 @@ export const appRoutes:Routes=[
             }},
             {path:'memberedit',component:MemberEditComponent,resolve:{
                 user:MemberEditResolver
-            }},
+            },canDeactivate:[PreventUnsavedChangesGuard]},
             {path:'member/:id',component:MemberDetailComponent,resolve:{
                 user:MemberDetailResolver
             }},

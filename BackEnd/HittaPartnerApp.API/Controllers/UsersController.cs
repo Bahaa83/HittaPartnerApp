@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HittaPartnerApp.API.Controllers
@@ -55,5 +56,28 @@ namespace HittaPartnerApp.API.Controllers
             var userToreturn = _mapper.Map<UserForDetailsDto>(user);
             return Ok(userToreturn);
         }
+        /// <summary>
+        /// Funktion för att uppdatera användarens info
+        /// </summary>
+        /// <param name="userID">ID:string</param>
+        /// <param name="userForUpdateDto">userForUpdateDto model</param>
+        /// <returns>204 </returns>
+        [Authorize]
+        [ProducesResponseType(204)]
+        [ProducesDefaultResponseType]
+        [HttpPut("UpdateUser")]
+        public async Task<ActionResult>UpdateUser(string userID,UserForUpdateDto userForUpdateDto)
+        {
+            if(userID!=User.FindFirst(ClaimTypes.NameIdentifier).Value)
+            {
+                return Unauthorized();
+            }
+            var userFromRepo = await _hittaPartnerRepo.GetUserByID(userID);
+            _mapper.Map(userForUpdateDto, userFromRepo);
+            if(await _hittaPartnerRepo.SaveAll())
+            return NoContent();
+            throw new Exception("Det uppstod ett problem vid ändring av abonnentens data");
+        }
+
     }
 }

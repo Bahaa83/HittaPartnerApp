@@ -31,5 +31,13 @@
             <param name="userId">Iden av användaren</param>
             <returns>en UserForDetailsDto model</returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.UsersController.UpdateUser(System.String,HittaPartnerApp.API.Services.DtoModels.UserForUpdateDto)">
+            <summary>
+            Funktion för att uppdatera användarens info
+            </summary>
+            <param name="userID">ID:string</param>
+            <param name="userForUpdateDto">userForUpdateDto model</param>
+            <returns>204 </returns>
+        </member>
     </members>
 </doc>

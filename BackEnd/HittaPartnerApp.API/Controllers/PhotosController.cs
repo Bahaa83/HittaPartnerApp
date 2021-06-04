@@ -73,7 +73,11 @@ namespace HittaPartnerApp.API.Controllers
                 photo.IsMain = true;
             userFromRepo.Photos.Add(photo);
             if (await _hittaPartnerRepo.SaveAll())
-                return Ok();
+            {
+                var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
+                return CreatedAtRoute("GetPhoto", new { id = photo.ID }, photoToReturn);
+            }
+          
             return BadRequest("Fel vid tillägg av bild");
 
         }

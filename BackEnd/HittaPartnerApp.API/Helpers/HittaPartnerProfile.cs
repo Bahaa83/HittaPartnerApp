@@ -20,7 +20,7 @@ namespace HittaPartnerApp.API.Helpers
                 
             CreateMap<Photo, PhotoForDetailsDto>();
             CreateMap<UserForUpdateDto, User>();
-            CreateMap<Photo, PhotoForReturnDto>();
+            CreateMap<Photo, PhotoForReturnDto>().ReverseMap();
             CreateMap<PhotoForUserDto,Photo>();
 
         }

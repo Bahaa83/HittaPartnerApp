@@ -48,9 +48,9 @@ namespace HittaPartnerApp.API.Controllers
         /// <param name="photoForUserDto">PhotoForUserDto model</param>
         /// <returns>CreatedAtRoute till GetPhoto Funktion</returns>
         [HttpPost("AddPhotoForUser")]
-        [Obsolete]
+        
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> AddPhotoForUser(string userId,PhotoForUserDto photoForUserDto)
+        public async Task<ActionResult> AddPhotoForUser(string userId,[FromForm]PhotoForUserDto photoForUserDto)
         {
             if (userId != User.FindFirst(ClaimTypes.NameIdentifier).Value)
             {
@@ -72,7 +72,9 @@ namespace HittaPartnerApp.API.Controllers
                     uploadResult = cloudinary.Upload(uploadparams);
                 }
             }
+#pragma warning disable CS0618 // Type or member is obsolete
             photoForUserDto.Url = uploadResult.Uri.ToString();
+#pragma warning restore CS0618 // Type or member is obsolete
             photoForUserDto.PublicId = uploadResult.PublicId;
             var photo = _mapper.Map<Photo>(photoForUserDto);
             if (!userFromRepo.Photos.Any(p => p.IsMain))
@@ -81,7 +83,7 @@ namespace HittaPartnerApp.API.Controllers
             if (await _hittaPartnerRepo.SaveAll())
             {
                 var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto", new { id = photo.ID }, photoToReturn);
+                return CreatedAtRoute("GetPhoto", new {id=photo.ID}, photoToReturn);
             }
           
             return BadRequest("Fel vid tillägg av bild");
@@ -92,7 +94,7 @@ namespace HittaPartnerApp.API.Controllers
         /// </summary>
         /// <param name="photoId">photo ID</param>
         /// <returns>Photo av PhotoForReturnDto</returns>
-        [HttpGet("GetPhoto")]
+        [HttpGet(Name = "GetPhoto")]
         [ProducesResponseType(200,Type =typeof(PhotoForReturnDto))]
         [ProducesDefaultResponseType]
         public async Task<ActionResult>GetPhoto(string photoId)

@@ -18,6 +18,21 @@
             <param name="userForLoginDto">UserForLoginDto model från klientsida </param>
             <returns></returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.PhotosController.AddPhotoForUser(System.String,HittaPartnerApp.API.Services.DtoModels.PhotoForUserDto)">
+            <summary>
+            Funktion för att Lägga till ett foto och visa det
+            </summary>
+            <param name="userId">Användaren ID</param>
+            <param name="photoForUserDto">PhotoForUserDto model</param>
+            <returns>CreatedAtRoute till GetPhoto Funktion</returns>
+        </member>
+        <member name="M:HittaPartnerApp.API.Controllers.PhotosController.GetPhoto(System.String)">
+            <summary>
+            Funktion för att retunerar ett photo
+            </summary>
+            <param name="photoId">photo ID</param>
+            <returns>Photo av PhotoForReturnDto</returns>
+        </member>
         <member name="M:HittaPartnerApp.API.Controllers.UsersController.GetAllUsers">
             <summary>
             Funktion som hämtar alla användaren 

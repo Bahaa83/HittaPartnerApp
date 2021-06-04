@@ -30,7 +30,6 @@ import { UserService } from 'src/app/_services/user.service';
       updateUser()
       {
         this.editForm?.reset(this.user)
-        this.alertify.success("Profilen har ändrats");
         this.userService.updateUser(this.authService.decodedToken.nameid,this.user).subscribe(
           next=>{ this.alertify.success("Profilen har ändrats")},
           error=>{ this.alertify.error(error)}

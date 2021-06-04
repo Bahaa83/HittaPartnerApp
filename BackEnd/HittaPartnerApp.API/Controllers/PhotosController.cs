@@ -41,9 +41,15 @@ namespace HittaPartnerApp.API.Controllers
 
              cloudinary = new Cloudinary(account);
         }
-
+        /// <summary>
+        /// Funktion för att Lägga till ett foto och visa det
+        /// </summary>
+        /// <param name="userId">Användaren ID</param>
+        /// <param name="photoForUserDto">PhotoForUserDto model</param>
+        /// <returns>CreatedAtRoute till GetPhoto Funktion</returns>
         [HttpPost("AddPhotoForUser")]
         [Obsolete]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> AddPhotoForUser(string userId,PhotoForUserDto photoForUserDto)
         {
             if (userId != User.FindFirst(ClaimTypes.NameIdentifier).Value)
@@ -81,7 +87,14 @@ namespace HittaPartnerApp.API.Controllers
             return BadRequest("Fel vid tillägg av bild");
 
         }
+        /// <summary>
+        /// Funktion för att retunerar ett photo
+        /// </summary>
+        /// <param name="photoId">photo ID</param>
+        /// <returns>Photo av PhotoForReturnDto</returns>
         [HttpGet("GetPhoto")]
+        [ProducesResponseType(200,Type =typeof(PhotoForReturnDto))]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult>GetPhoto(string photoId)
         {
             var photoFromRepo = await _hittaPartnerRepo.GetPhoto(photoId);

@@ -50,6 +50,7 @@ namespace HittaPartnerApp.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddTransient<TrialData>();
             services.AddScoped<IAuthentication, Authentication>();
             services.AddScoped<IHittaPartnerRepo, HittaPartnerRepo>();

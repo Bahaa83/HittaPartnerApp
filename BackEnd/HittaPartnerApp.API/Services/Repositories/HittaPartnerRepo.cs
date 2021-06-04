@@ -36,6 +36,12 @@ namespace HittaPartnerApp.API.Services.Repositories
             return users;
         }
 
+        public async Task<Photo> GetPhoto(string PhotoId)
+        {
+            var photo =await _dbcontext.Photos.FirstOrDefaultAsync(p => p.ID.Equals(PhotoId));
+            return photo;
+        }
+
         public async Task<User> GetUserByID(string UserID)
         {
             var user = await _dbcontext.users.Include(x=>x.Photos).FirstOrDefaultAsync(x => x.ID.Equals(UserID));

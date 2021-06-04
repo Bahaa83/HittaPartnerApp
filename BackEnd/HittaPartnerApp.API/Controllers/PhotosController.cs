@@ -77,7 +77,13 @@ namespace HittaPartnerApp.API.Controllers
             return BadRequest("Fel vid tillägg av bild");
 
         }
-        
+        [HttpGet("GetPhoto")]
+        public async Task<ActionResult>GetPhoto(string photoId)
+        {
+            var photoFromRepo = await _hittaPartnerRepo.GetPhoto(photoId);
+            var photo = _mapper.Map<PhotoForReturnDto>(photoFromRepo);
+            return Ok(photo);
+        }
 
     }
 }

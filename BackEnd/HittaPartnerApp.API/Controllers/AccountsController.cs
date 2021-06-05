@@ -1,4 +1,5 @@
-﻿using HittaPartnerApp.API.Services.DtoModels;
+﻿using AutoMapper;
+using HittaPartnerApp.API.Services.DtoModels;
 using HittaPartnerApp.API.Services.IRepositories;
 using HittaPartnerApp.Models;
 using Microsoft.AspNetCore.Http;
@@ -26,11 +27,13 @@ namespace HittaPartnerApp.API.Controllers
     {
         private readonly IAuthentication _repo;
         private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
 
-        public AccountsController(IAuthentication repo,IConfiguration config)
+        public AccountsController(IAuthentication repo,IConfiguration config,IMapper mapper)
         {
             _repo = repo;
             _config = config;
+            _mapper = mapper;
         }
         /// <summary>
         /// Registrera ett nytt användare
@@ -80,9 +83,11 @@ namespace HittaPartnerApp.API.Controllers
             };
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
+            var user = _mapper.Map<UserForListDto>(userFromRepo);
             return Ok(new
             {
-                token = tokenHandler.WriteToken(token)
+                token = tokenHandler.WriteToken(token),
+                user
                
             });
         }

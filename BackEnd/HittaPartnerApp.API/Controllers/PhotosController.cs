@@ -103,6 +103,21 @@ namespace HittaPartnerApp.API.Controllers
             var photo = _mapper.Map<PhotoForReturnDto>(photoFromRepo);
             return Ok(photo);
         }
+        [HttpPost("SetMainPhotoForUser")]
+        public async Task<ActionResult> SetMainPhotoForUser(string userId,string photoId)
+        {
+            if(userId!=User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                return Unauthorized();
+            }
+            var desiredPhoto = await _hittaPartnerRepo.GetPhoto(photoId);
+            if (desiredPhoto.IsMain) return BadRequest("Det här är redan huvudbild");
+            var oldMainPhoto = await _hittaPartnerRepo.GetMainPhotoForUser(userId);
+            oldMainPhoto.IsMain = false;
+            desiredPhoto.IsMain = true;
+            if (!await _hittaPartnerRepo.SaveAll()) return BadRequest("Fel vid uppdatering av huvudbilden");
+            return NoContent();
+        }
 
     }
 }

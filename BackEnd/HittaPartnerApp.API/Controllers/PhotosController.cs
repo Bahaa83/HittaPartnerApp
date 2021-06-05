@@ -103,7 +103,15 @@ namespace HittaPartnerApp.API.Controllers
             var photo = _mapper.Map<PhotoForReturnDto>(photoFromRepo);
             return Ok(photo);
         }
+        /// <summary>
+        /// Funktion för att tillägg en bild som huvudbild
+        /// </summary>
+        /// <param name="userId">användare ID</param>
+        /// <param name="photoId">Foto ID</param>
+        /// <returns>204</returns>
         [HttpPost("SetMainPhotoForUser")]
+        [ProducesResponseType(204)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> SetMainPhotoForUser(string userId,string photoId)
         {
             if(userId!=User.FindFirstValue(ClaimTypes.NameIdentifier))

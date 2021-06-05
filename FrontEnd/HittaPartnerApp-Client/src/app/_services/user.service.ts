@@ -24,7 +24,7 @@ import { User } from '../_models/user';
             return this.http.put(this.baseUrl+'UpdateUser?userID=' +id,user)
           }
             setMainPhoto(userId:string,photoId:string){
-              return this.http.post(this.photobaseUrl+'Photos/SetMainPhotoForUser?userId='+userId+'&photoId=',photoId);
+              return this.http.post(this.photobaseUrl+'Photos/SetMainPhotoForUser?userId='+userId+'&photoId='+photoId,{});
             }
 
 

@@ -3,6 +3,10 @@ import { Photo } from 'src/app/_models/photo';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AccountService } from 'src/app/_services/account.service';
+import { UserService } from 'src/app/_services/user.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { User } from 'src/app/_models/user';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,12 +17,13 @@ import { AccountService } from 'src/app/_services/account.service';
 export class PhotoEditorComponent implements OnInit {
 @Input() photos:Photo[] | undefined;
 
-uploader!:FileUploader;
-hasBaseDropZoneOver:false | undefined;
+    uploader!:FileUploader;
+    hasBaseDropZoneOver:false | undefined;
+    URL= environment.apiUrl;
+    currentMain!:Photo;
+    user!:User;
 
-URL= environment.apiUrl;
-
-  constructor(private authService:AccountService) {
+  constructor(private route:ActivatedRoute, private authService:AccountService,private userService:UserService,private alertify:AlertifyService) {
     
     
   }
@@ -26,6 +31,9 @@ URL= environment.apiUrl;
 
   ngOnInit() {
     this.initializeUploader();
+    this.route.data.subscribe(data=>{
+      this.user= data['user'];
+    })
   }
 
 
@@ -59,5 +67,17 @@ URL= environment.apiUrl;
       }
     }
   }
+       setMainPhoto(photo:Photo)
+       {
+          this.userService.setMainPhoto(this.authService.decodedToken.nameid,photo.id).subscribe(
+            next=>{this.currentMain=this.photos!.filter(p=>p.isMain===true)[0];
+            this.currentMain.isMain=false;
+            photo.isMain=true;
+            this.user.photoUrl=photo.url;
+            },
+            error=>{this.alertify.error(error)}
+            
+          )
+       }
   
 }

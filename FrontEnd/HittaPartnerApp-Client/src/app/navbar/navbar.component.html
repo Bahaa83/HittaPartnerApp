@@ -22,9 +22,11 @@
              
           </ul>
       <div dropdown *ngIf="loggedIn()" class="dropdown ">
+      
               <a  dropdownToggle class="dropdown-toggle text-dark nav-link " >
-                Välkommen {{authService.decodedToken?.unique_name |titlecase}}
+                <img src={{authService.currentUser.photoUrl}}>  {{authService.decodedToken?.unique_name |titlecase}}
               </a>
+             
             
               <ul *dropdownMenu id="dropdown-menu" class="dropdown-menu  " >
                     <li>
@@ -45,7 +47,9 @@
                       </a>
                     </li>
               </ul>
+           
       </div>
+      
             <div id="firstPagelinks" *ngIf="!loggedIn()" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0 ">
                     <li class ="nav-item" routerLinkActive="active">

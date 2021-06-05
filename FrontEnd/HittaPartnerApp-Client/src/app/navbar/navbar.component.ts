@@ -27,6 +27,9 @@ model:any={}
   }
   loggedOut(){
     localStorage.removeItem('token');
+    this.authService.decodedToken=null;
+    localStorage.removeItem('user');
+    this.authService.currentUser!=null;
     this.altertify.warning('Du är utloggad');
     this.router.navigate(['home']);
   }

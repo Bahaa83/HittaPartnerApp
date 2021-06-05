@@ -1,7 +1,7 @@
 #log-temp
 {
-    background-color: #eee;
-    opacity: 0.6;
+    background-color: #eee !important;
+    opacity: 0.9;
     height: 350px;
     border-radius: 4px;
     box-shadow: 0 5px 1px white;

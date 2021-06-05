@@ -14,5 +14,6 @@ namespace HittaPartnerApp.API.Services.IRepositories
         Task<User> GetUserByID(string UserID);
         Task<bool> SaveAll();
         Task<Photo> GetPhoto(string PhotoId);
+        Task<Photo> GetMainPhotoForUser(string userId);
     }
 }

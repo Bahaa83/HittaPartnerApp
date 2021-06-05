@@ -24,7 +24,7 @@
       <div dropdown *ngIf="loggedIn()" class="dropdown ">
       
               <a  dropdownToggle class="dropdown-toggle text-dark nav-link " >
-                <img src={{authService.currentUser.photoUrl}}>  {{authService.decodedToken?.unique_name |titlecase}}
+                <img src={{photoUrl}}>  {{authService.decodedToken?.unique_name |titlecase}}
               </a>
              
             

@@ -8,10 +8,14 @@ import { AlertifyService } from '../_services/alertify.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-model:any={}
+model:any={};
+photoUrl!:string;
   constructor(public authService:AccountService,private altertify:AlertifyService,private router:Router) { }
 
   ngOnInit() {
+    this.authService.currentPhotoUrl.subscribe(
+      photoUrl=>this.photoUrl=photoUrl
+    )
   }
   login(){
     this.authService.login(this.model).subscribe(

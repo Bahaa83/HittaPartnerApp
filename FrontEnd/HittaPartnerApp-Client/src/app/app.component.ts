@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
    if(user)
    {
      this.authService.currentUser =JSON.parse(user);
+     this.authService.changeMemberPhoto(this.authService.currentUser.photoUrl);
    }
   }
  

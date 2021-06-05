@@ -26,7 +26,7 @@ namespace HittaPartnerApp.API.Services.Repositories
 
         public async Task<User> Login(string UserName, string Password)
         {
-            var user = await db.users.FirstOrDefaultAsync(x => x.UserName.Equals(UserName));
+            var user = await db.users.Include(u=>u.Photos).FirstOrDefaultAsync(x => x.UserName.Equals(UserName));
             if (user == null) return null;
             if ( !VerifyPasswordHash(Password, user.PasswordHash, user.PasswordSalt)) return null;
             return user;

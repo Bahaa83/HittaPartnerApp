@@ -26,6 +26,9 @@ import { User } from '../_models/user';
             setMainPhoto(userId:string,photoId:string){
               return this.http.post(this.photobaseUrl+'Photos/SetMainPhotoForUser?userId='+userId+'&photoId='+photoId,{});
             }
-
+            deletePhoto(userId:string,photoId:string){
+              return this.http.delete(this.photobaseUrl+'Photos/DeletePhoto?userId='+userId+'&photoId='+photoId)
+            }
+            
 
  }

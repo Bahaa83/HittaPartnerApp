@@ -1,16 +1,21 @@
 
-    <form #registerForm="ngForm" (ngSubmit)="register()" >
+    <form formGroupName="registerForm" (ngSubmit)="register()" >
         <div class="regForm">
-                <h2 class="text-center texet-dark" style="font-weight: bolder;font-size: 3rem; color:red !important ;">
+            <div class="text-center texet-dark">
+                <h2  style="font-weight: bolder;font-size: 3rem; color:red !important ;">
                     <p>Din partner väntar på dig</p>
                 </h2>
+            </div>
             
                 <hr>
                     <div   class="form-group " style="margin:15px 40px">
-                        <input name="username" [(ngModel)]="model.username" id="reg-input" type ="text" class="form-control" placeholder="Änvändarnamn">
+                        <input formControlName="userName" id="reg-input" type ="text" class="form-control" placeholder="Änvändarnamn">
                     </div>
                     <div class="form-group"style="margin:15px 40px">
-                        <input name="password" [(ngModel)]="model.password" id="reg-input" type ="text" class="form-control" placeholder="Lösenord">
+                        <input formControlName="password" id="reg-input" type ="text" class="form-control" placeholder="Lösenord">
+                    </div>
+                    <div class="form-group"style="margin:15px 40px">
+                        <input formControlName="confirmPassword" id="reg-input" type ="text" class="form-control" placeholder="Bekräfta lösenord">
                     </div>
          </div>
                     <div class="form-group text-center"style="margin:10px 0;">

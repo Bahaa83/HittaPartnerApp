@@ -33,6 +33,14 @@
             <param name="photoId">photo ID</param>
             <returns>Photo av PhotoForReturnDto</returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.PhotosController.SetMainPhotoForUser(System.String,System.String)">
+            <summary>
+            Funktion för att tillägg en bild som huvudbild
+            </summary>
+            <param name="userId">användare ID</param>
+            <param name="photoId">Foto ID</param>
+            <returns>204</returns>
+        </member>
         <member name="M:HittaPartnerApp.API.Controllers.UsersController.GetAllUsers">
             <summary>
             Funktion som hämtar alla användaren 

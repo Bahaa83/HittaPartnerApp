@@ -70,6 +70,7 @@ namespace HittaPartnerApp.API.Controllers
                         .Width(500).Height(500).Crop("fill").Gravity("face")
                     };
                     uploadResult = cloudinary.Upload(uploadparams);
+                    
                 }
             }
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -125,6 +126,39 @@ namespace HittaPartnerApp.API.Controllers
             desiredPhoto.IsMain = true;
             if (!await _hittaPartnerRepo.SaveAll()) return BadRequest("Fel vid uppdatering av huvudbilden");
             return NoContent();
+        }
+        [HttpDelete("DeletePhoto")]
+        [ProducesResponseType(200)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult>DeletePhoto(string userId,string photoId)
+        {
+            if (userId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                return Unauthorized();
+            }
+            var userFromRepo = await _hittaPartnerRepo.GetUserByID(userId);
+            if (!userFromRepo.Photos.Any(p => p.ID.Equals(photoId))) return Unauthorized();
+            var photo = await _hittaPartnerRepo.GetPhoto(photoId);
+            if (photo.IsMain) return BadRequest("Det här är redan huvudbild");
+            if (photo.PublicId != null)
+            {
+                var deletionParams = new DeletionParams(photo.PublicId);
+               
+                var deletionResult = this.cloudinary.Destroy(deletionParams);
+                
+                if(deletionResult.Result== "ok")
+                {
+                     _hittaPartnerRepo.Delete(photo);
+                }
+            }
+            if(photo.PublicId==null)
+            {
+                _hittaPartnerRepo.Delete(photo);
+            }
+            if (await _hittaPartnerRepo.SaveAll()) 
+            return Ok();
+            return BadRequest("Fel vid borttagning av bilden");
+
         }
 
     }

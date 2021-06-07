@@ -12,17 +12,20 @@
 #reg-input
 {
    border: solid 2px gray;
+   /*margin:15px 40px;*/
+  
+   margin: 5px 0;
    
 }
 #reg-input:hover
 {
-    border: solid 2px green !important;
+    border: solid 2px darkcyan !important;
 }
 .regForm
 {
     background-color: #eee;
     opacity: 0.9;
-    height: 300px;
+  min-width: 300px;
     border-radius: 4px;
     box-shadow: 0 5px 1px white;
 }

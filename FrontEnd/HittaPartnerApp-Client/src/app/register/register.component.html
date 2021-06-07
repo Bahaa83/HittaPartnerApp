@@ -1,6 +1,6 @@
 
     <form [formGroup]="registerForm" (ngSubmit)="register()" >
-        <div class="regForm">
+        <div class="container regForm">
             <div class="text-center texet-dark">
                 <h2  style="font-weight: bolder;font-size: 3rem; color:red !important ;">
                     <p>Din partner väntar på dig</p>
@@ -8,22 +8,74 @@
             </div>
             
                 <hr>
-                    <div   class="form-group " style="margin:15px 40px">
-                        <input formControlName="userName" id="reg-input" type ="text" class="form-control" placeholder="Änvändarnamn">
+                <div style="font-weight:bold;" class="form-group">
+                    <label  class="control-label" style="margin-right:10px"><strong>Jag är</strong> </label>
+                    <label class="radio-inline ml-3  ">
+                      <input class="mr-1" type="radio" value="Man" formControlName="gender">Man
+                    </label>
+                    <label class="radio-inline ml-3">
+                      <input class="mr-1" type="radio" value="Kvinna" formControlName="gender">Kvinna
+                    </label>
+                  </div>
+                    <div   class="form-group " >
+                        <input formControlName="userName" id="reg-input" type ="text" [ngClass]="{'is-invalid':get.userName.hasError('required')&& get.userName.touched}"  class="form-control" placeholder="användarnamn">
+                         <div class="invalid-feedback">
+                            Användarnamn är obligatorisk
+                         </div>
                     </div>
-                    <div class="form-group"style="margin:15px 40px">
-                        <input formControlName="password" id="reg-input" required type ="text" class="form-control" placeholder="Lösenord">
+                    <div class="form-group">
+                        <input id="reg-input" [ngClass]="{'is-invalid': get.knownAs.hasError('required') && get.knownAs.touched}" class="form-control"
+                          placeholder="Smeknamnet " formControlName="knownAs">
+                        <div class="invalid-feedback" *ngIf="get.knownAs.touched && get.knownAs.hasError('required')">
+                            Ange smeknamnet</div>
+                      </div>
+                      <div class="form-group">
+                        <input id="reg-input" [ngClass]="{'is-invalid': get.dateOfBirth.hasError('required') && get.dateOfBirth.touched}"
+                          class="form-control" placeholder="Födelsedatum" formControlName="dateOfBirth" type="date">
+                        <div class="invalid-feedback" *ngIf="get.dateOfBirth.touched && get.dateOfBirth.hasError('required')">
+                            Ange ditt födelsedatum</div>
+                      </div>
+                      <div class="form-group">
+                        <input id="reg-input" [ngClass]="{'is-invalid':get.city.errors && get.city.touched}" class="form-control"
+                          placeholder="Staden" formControlName="city">
+                        <div class="invalid-feedback" *ngIf="get.city.touched && get.city.hasError('required')">
+                            Angge din stads namn
+                         </div>
+                      </div>
+                      <div class="form-group">
+                        <input id="reg-input" [ngClass]="{'is-invalid': get.country.hasError('required') && get.countrytouched}" class="form-control"
+                          placeholder="Landet" formControlName="country">
+                        <div class="invalid-feedback" *ngIf="get.country.touched && get.country.hasError('required')">
+                            Ange ditt lands namn</div>
+                      </div>
+                    <div class="form-group">
+                        <input formControlName="password" id="reg-input" required type ="text"  [ngClass]="{'is-invalid':get.password.hasError('reguired')&& get.password.touched}" class="form-control" placeholder="Lösenord">
+                        <div *ngIf="get.password.hasError('reguired')&& get.password.touched" class="invalid-feedback">
+                            Lösenord är obligatorisk
+                         </div>
+                         <div *ngIf="get.password.hasError('minlength')&& get.password.touched" class="invalid-feedback">
+                            Lösenordet får inte innehålla mindre än fyra tecken
+                         </div>
+                         <div *ngIf="get.password.hasError('maxlength')&& get.password.touched" class="invalid-feedback">
+                            Lösenordet får inte överstiga åtta tecken
+                         </div>
                     </div>
-                    <div class="form-group"style="margin:15px 40px">
-                        <input formControlName="confirmPassword" id="reg-input" type ="text" class="form-control" placeholder="Bekräfta lösenord">
+                    <div class="form-group">
+                        <input formControlName="confirmPassword" id="reg-input" type ="text" [ngClass]="{'is-invalid':get.confirmPassword.hasError('required')&& get.confirmPassword.touched ||
+                    get.confirmPassword.touched && get.confirmPassword.hasError('mismatch')}" class="form-control" placeholder="Bekräfta lösenord">
+                        <div *ngIf="get.confirmPassword.hasError('required')&& get.confirmPassword.touched" class="invalid-feedback">
+                            Bekräfta lösenord är obligatorisk
+                         </div>
+                         <div *ngIf="get.confirmPassword.hasError('mismatch') && get.confirmPassword.touched" class="invalid-feedback">
+                            Lösenord och Bekräfta lösenord måste matcha
+                         </div>
                     </div>
+
          </div>
                     <div class="form-group text-center"style="margin:10px 0;">
-                        <button id="reg-button" class="btn btn-success " type="submit">BLI MEDLEM NU</button>
+                        <button [disabled]="!registerForm.valid" id="reg-button" class="btn btn-success " type="submit">BLI MEDLEM NU</button>
                         <button  (click)="cancel()" id="reg-button"  class="btn btn-success " type="button">INTE NU</button>
                     </div>
         
     </form>
-    <p style="font-weight: bolder;font-size: 3rem; color:red !important ;">{{registerForm.value|json}}</p>
-    <p style="font-weight: bolder;font-size: 3rem; color:red !important ;">{{registerForm.status}}</p>
-
+    

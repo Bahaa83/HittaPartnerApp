@@ -47,7 +47,7 @@ namespace HittaPartnerApp.API.Controllers
         /// </summary>
         /// <param name="userId">Iden av användaren</param>
         /// <returns>en UserForDetailsDto model</returns>
-        [HttpGet("GetUserByID")]
+        [HttpGet("GetUserByID",Name ="GetUser")]
         [ProducesResponseType(200, Type = typeof(UserForDetailsDto))]
         [ProducesDefaultResponseType]
         public async Task<ActionResult>GetUserByID(string userId)

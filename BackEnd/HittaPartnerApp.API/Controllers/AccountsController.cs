@@ -48,13 +48,11 @@ namespace HittaPartnerApp.API.Controllers
 
             if (await _repo.IsExists(userForRegisterDto.UserName.ToLower()))
                 return BadRequest("Den här användaren är finns redan");
-            var newUser = new User()
-            {
-                UserName= userForRegisterDto.UserName
-            };
+            var newUser = _mapper.Map<User>(userForRegisterDto);
             var CreatedUser = await _repo.Register(newUser, userForRegisterDto.Password);
             if (CreatedUser == null) return BadRequest();
-            return StatusCode(201);
+            var userToReturn = _mapper.Map<UserForDetailsDto>(CreatedUser);
+            return CreatedAtRoute("GetUser",new {controller="Users",id=CreatedUser.ID }, userToReturn);
         }
         /// <summary>
         /// Loggin 

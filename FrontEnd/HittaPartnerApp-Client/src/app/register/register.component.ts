@@ -13,9 +13,7 @@ export class RegisterComponent implements OnInit {
   model: any={};
   registerForm:FormGroup=new FormGroup({})
  
-  constructor(private fb:FormBuilder, private accountServices:AccountService,private alertify:AlertifyService) {
-   
-   }
+  constructor(private fb:FormBuilder, private accountServices:AccountService,private alertify:AlertifyService) { }
 
   ngOnInit() {
   
@@ -36,9 +34,11 @@ export class RegisterComponent implements OnInit {
 
       },{validator:this.passwordMatcValidetor('password','confirmPassword')})
   }
+
     get get(){
       return this.registerForm.controls;
     }
+
    passwordMatcValidetor (password:string,confirmPassword:string)
    {
     return (formGroup: FormGroup) => {

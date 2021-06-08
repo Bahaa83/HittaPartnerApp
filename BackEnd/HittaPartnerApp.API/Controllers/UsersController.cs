@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HittaPartnerApp.API.Helpers;
 using HittaPartnerApp.API.Services.DtoModels;
 using HittaPartnerApp.API.Services.IRepositories;
 using HittaPartnerApp.Models;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace HittaPartnerApp.API.Controllers
 {
+    [ServiceFilter(typeof(UserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]

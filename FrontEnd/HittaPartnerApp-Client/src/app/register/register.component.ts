@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {  FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 import { AlertifyService } from '../_services/alertify.service';
 
@@ -10,10 +12,10 @@ import { AlertifyService } from '../_services/alertify.service';
 })
 export class RegisterComponent implements OnInit {
   @Output()cancelRegister=new EventEmitter;
-  model: any={};
+ user:User | undefined
   registerForm:FormGroup=new FormGroup({})
  
-  constructor(private fb:FormBuilder, private accountServices:AccountService,private alertify:AlertifyService) { }
+  constructor(private router:Router, private fb:FormBuilder, private accountServices:AccountService,private alertify:AlertifyService) { }
 
   ngOnInit() {
   
@@ -60,12 +62,22 @@ export class RegisterComponent implements OnInit {
 
   
   register(){
-//this.accountServices.register(this.model).subscribe(
- // ()=>{this.alertify.success('du är medlem nu')},
-  //error=>{ this.alertify.error(error)}
+    if(this.registerForm.valid)
+    {
+         this.user=Object.assign({},this.registerForm.value);
+
+         this.accountServices.register(this.user!).subscribe(
+          ()=>{this.alertify.success('du är medlem nu')},
+          error=>{ this.alertify.error(error)},
+          ()=>{this.accountServices.login(this.user).subscribe(
+             ()=>{this.router.navigate(['members'])}
+          )}
+          
+        )
+    }
+
   
-//)
-console.log(this.registerForm.value);
+
   }
   cancel(){
 this.cancelRegister.emit(false);

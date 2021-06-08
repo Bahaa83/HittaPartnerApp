@@ -10,8 +10,11 @@ export class DateAgoPipe implements PipeTransform {
       if (value) {
           const seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
          
-          if (seconds < 29) // less than 30 seconds ago will show as 'Just now'
+          if (seconds <= 5) // För mindre än 5 sekunder sedan visas som 'Aktiv nu'
+              return 'Aktiv nu';
+          if (seconds < 29) //för mindre än 30 sekunder sedan visas som 'Precis nu'
               return 'Precis nu';
+
           const intervals:any = {
               'År': 31536000,
               'Månad': 2592000,
@@ -28,7 +31,7 @@ export class DateAgoPipe implements PipeTransform {
                   if (counter === 1) {
                       return counter + ' ' + i + ' sen'; // singular (1 day ago)
                   } else {
-                      return counter + ' ' + i + 'er sen'; // plural (2 days ago)
+                      return counter + ' ' + i + ' sen'; // plural (2 days ago)
                   }
           }
       }

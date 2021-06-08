@@ -29,11 +29,11 @@
             </div>
             <div>
               <strong>Senast sedd: </strong>
-              <p>{{user.lastActiv}}</p>
+              <p>{{user.lastActive|dateAgo}}</p>
             </div>
             <div>
               <strong>Prenumererade sedan: </strong>
-              <p>{{user.created}}</p>
+              <p>{{user.created|date}}</p>
             </div>
           </div>
           <div class="card-footer">

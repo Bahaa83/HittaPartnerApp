@@ -25,7 +25,7 @@
 {
     background-color: #eee;
     opacity: 0.9;
-  min-width: 300px;
     border-radius: 4px;
     box-shadow: 0 5px 1px white;
+    height: 500px;;
 }

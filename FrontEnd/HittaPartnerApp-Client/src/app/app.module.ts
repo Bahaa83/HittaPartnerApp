@@ -12,6 +12,7 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from './app.component';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { AccountService } from './_services/account.service';
 import { HomeComponent } from './home/home.component';
@@ -36,6 +37,9 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
+
+
 
 
 
@@ -47,7 +51,8 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [									
-    AppComponent,
+      AppComponent,
+      DateAgoPipe,
       NavbarComponent,
       HomeComponent,
       RegisterComponent,
@@ -60,7 +65,8 @@ export function tokenGetter() {
       MemberListComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      DateAgoPipe
    ],
   imports: [
     BrowserModule,

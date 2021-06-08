@@ -1,6 +1,6 @@
   <div style="border: solid 1px black;" class=" card m-3" >
         <div class="car-img wrapper">
-          <img  class=" card-img-top" src="{{user.photoUrl}}" alt="{{user.knownAs}}">
+          <img  class=" card-img-top" src="{{user.photoUrl||'assets/images/user.png'}}" alt="{{user.knownAs}}">
           <ul dir="ltr" class="list-inline members-icons animate text-center">
             <li class="list-inline-item">
               <button class="btn btn-sm btn-outline-danger" [routerLink]="['/member/',user.id]"   >

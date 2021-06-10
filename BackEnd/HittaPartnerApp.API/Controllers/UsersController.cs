@@ -38,10 +38,11 @@ namespace HittaPartnerApp.API.Controllers
         [HttpGet("GetAllUsers")]
         [ProducesResponseType(200,Type =typeof(List<UserForListDto>))]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> GetAllUsers()
+        public async Task<ActionResult> GetAllUsers([FromQuery] UserParams userParams)
         {
-            var users = await _hittaPartnerRepo.GetAllUsers();
+            var users = await _hittaPartnerRepo.GetAllUsers(userParams);
             var userToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
+            Response.AddPagination(users.CurrentPage, users.PagesSize, users.TotalCount, users.TotalPages);
             return Ok(userToReturn);
         }
         /// <summary>

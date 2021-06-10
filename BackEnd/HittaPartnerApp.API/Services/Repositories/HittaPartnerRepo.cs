@@ -1,4 +1,5 @@
 ﻿using HittaPartnerApp.API.Data;
+using HittaPartnerApp.API.Helpers;
 using HittaPartnerApp.API.Services.IRepositories;
 using HittaPartnerApp.Models;
 using Microsoft.EntityFrameworkCore;
@@ -30,10 +31,11 @@ namespace HittaPartnerApp.API.Services.Repositories
             
         }
 
-        public async Task<IEnumerable<User>> GetAllUsers()
+        public async Task<PagedList<User>> GetAllUsers(UserParams userParams)
         {
-           var users= await _dbcontext.users.Include(x=>x.Photos).ToListAsync();
-            return users;
+           var users=  _dbcontext.users.Include(x=>x.Photos);
+
+            return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<Photo> GetMainPhotoForUser(string userId)

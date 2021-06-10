@@ -41,7 +41,7 @@
             <param name="photoId">Foto ID</param>
             <returns>204</returns>
         </member>
-        <member name="M:HittaPartnerApp.API.Controllers.UsersController.GetAllUsers">
+        <member name="M:HittaPartnerApp.API.Controllers.UsersController.GetAllUsers(HittaPartnerApp.API.Helpers.UserParams)">
             <summary>
             Funktion som hämtar alla användaren 
             </summary>

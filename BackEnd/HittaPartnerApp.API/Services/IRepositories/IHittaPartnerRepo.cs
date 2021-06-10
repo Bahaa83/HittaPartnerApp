@@ -1,4 +1,5 @@
-﻿using HittaPartnerApp.Models;
+﻿using HittaPartnerApp.API.Helpers;
+using HittaPartnerApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,11 @@ namespace HittaPartnerApp.API.Services.IRepositories
     {
         void Add<T>(T entity) where T : class;
         void Delete<T>(T entity) where T : class;
-        Task<IEnumerable<User>> GetAllUsers();
+        Task<PagedList<User>> GetAllUsers(UserParams userParams);
         Task<User> GetUserByID(string UserID);
         Task<bool> SaveAll();
         Task<Photo> GetPhoto(string PhotoId);
         Task<Photo> GetMainPhotoForUser(string userId);
+
     }
 }

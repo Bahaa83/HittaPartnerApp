@@ -1,6 +1,6 @@
 :host /deep/.membersBg
 {
-    width: 100%;
+  
     background: url('src/assets/images/blur_bg_X2.jpg') no-repeat center 20%;
     background-size: cover;
    
@@ -9,3 +9,10 @@
 {
   font-size: 1.1rem;
 }
+.header-Text
+{
+ 
+ color:brown !important;
+ 
+}
+

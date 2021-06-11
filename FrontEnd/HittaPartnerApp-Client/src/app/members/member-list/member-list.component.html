@@ -1,14 +1,45 @@
-<div class=" membersBg">
-  <div class="row">
-   <div  *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
-    <app-member-card [user]= user ></app-member-card> 
-   </div>
-  </div>
-  <div class="d-flex justify-content-center">
-    <pagination  [boundaryLinks]="true" [itemsPerPage]="pagination.itemsPerPage" [totalItems]="pagination.totalItems" 
-     [(ngModel)]="pagination.currentPage"  (pageChanged)=" pageChanged($event)"   class="pagination-sm"
-            previousText="Previous" nextText="Nästa" firstText="Först" lastText="Sista">
-          </pagination>
+      <div class="text-center mt-3">
+        <h4  class="header-Text "> Här finns {{pagination.totalItems}} förslager kanske matchar dig </h4>
+      </div>
+  <div class="container-fluid membersBg mt-3">
 
-  </div>
+  
+    <form  form="ngForm"  class="text-center form-inline" novalidate>
+    
+        <label for="minAge">Lägsta ålder </label>
+        <input type="number" class="input-small m-2" style="width: 70px" id="minAge"
+          name="minAge">
+     
+  
+      
+        <label for="maxAge">Max ålder </label>
+        <input type="number"  class="input-small m-2" style="width: 70px" id="maxAge"
+          name="maxAge">
+     
+  
+      
+        <label for="gender">Visa</label>
+        <select  class="input-small m-2" style="width: 130px" id="gender" name="gender">
+          <option >
+          
+          </option>
+        </select>
+      
+      <button type="submit"  class="btn btn-danger m-2 ">Sök</button>
+      <button type="button"   class="btn btn-danger m-2">Återställa</button>
+  
+    </form>
+   <br>
+          <div class="row">
+              <div  *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
+                <app-member-card [user]= user ></app-member-card> 
+              </div>
+         </div>
+              <div class="d-flex justify-content-center">
+                <pagination  [boundaryLinks]="true" [itemsPerPage]="pagination.itemsPerPage" [totalItems]="pagination.totalItems" 
+                [(ngModel)]="pagination.currentPage"  (pageChanged)=" pageChanged($event)"   class="pagination-sm"
+                        previousText="Previous" nextText="Nästa" firstText="Först" lastText="Sista">
+                </pagination>
+
+          </div>
 </div>

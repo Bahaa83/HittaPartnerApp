@@ -27,7 +27,7 @@
 {
     cursor: pointer;
 }
-.loginBg
+:host/deep/.loginBg
 {
     width: 98%;
     height: 800px;

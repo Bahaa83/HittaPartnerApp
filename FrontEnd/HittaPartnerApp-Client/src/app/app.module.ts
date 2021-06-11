@@ -10,9 +10,9 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery-9';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { AppComponent } from './app.component';
-
 import { NavbarComponent } from './navbar/navbar.component';
 import { AccountService } from './_services/account.service';
 import { HomeComponent } from './home/home.component';
@@ -77,6 +77,7 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     FileUploadModule,
+    ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,

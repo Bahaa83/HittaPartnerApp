@@ -46,7 +46,7 @@ namespace HittaPartnerApp.API.Controllers
             userParams.UserId = currentUserId;
             if (string.IsNullOrEmpty(userParams.Gender))
             {
-                userParams.Gender = currentUser.Gender.Equals ("Man") ? "Kvinna" : "Man";
+                userParams.Gender = currentUser.Gender=="Man" ? "Kvinna" : "Man";
             }
             var users = await _hittaPartnerRepo.GetAllUsers(userParams);
             var userToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);

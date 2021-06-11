@@ -18,8 +18,8 @@ export class MemberListResolver implements Resolve<PaginationResult<User[]>>{
     }
     resolve(route:ActivatedRouteSnapshot):Observable <PaginationResult<User[]>>{
         this.userParams.gender=this.user.gender==='Man'?'Kvinna':'Man';
-    this.userParams.minAge=18;
-    this.userParams.maxAge=99;
+        this.userParams.minAge=18;
+        this.userParams.maxAge=99;
         return this.userService.getAllUsers(this.pageNumber,this.pageSize,this.userParams).pipe(
             catchError(error=>{
                 this.alertify.error("Det är ett problem att visa data");

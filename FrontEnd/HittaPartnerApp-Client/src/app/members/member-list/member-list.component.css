@@ -15,4 +15,8 @@
  color:brown !important;
  
 }
+:host /deep/.input-small
+{
+  border-radius: 5px;
+}
 

@@ -7,6 +7,7 @@ import { PaginationResult } from '../_models/pagination';
 import { User } from '../_models/user';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,13 +15,20 @@ import { User } from '../_models/user';
       baseUrl=environment.apiUrl+'Users/';
       photobaseUrl=environment.apiUrl;
       constructor(private http:HttpClient) { }
-      getAllUsers(page: number|null,itemsPerPage:number|null):Observable<PaginationResult<User[]>>
+      getAllUsers(page: number|null,itemsPerPage:number|null,userParams:any|null):Observable<PaginationResult<User[]>>
       {
        const paginationResult:PaginationResult<User[]>= new PaginationResult<User[]>();
        let params= new HttpParams();
        if(page!=null && itemsPerPage!=null){
          params=params.append('pageNumber',page);
          params= params.append('pageSize',itemsPerPage);
+         
+       }
+       if(userParams!=null){
+        params=params.append('minAge',userParams.minAge);
+        params= params.append('maxAge',userParams.maxAge);
+        params= params.append('gender',userParams.gender);
+        
        }
       return this.http.get<User[]|any>(this.baseUrl+'GetAllUsers',{observe:'response',params}).pipe(
         map(response=>{

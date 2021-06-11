@@ -4,29 +4,29 @@
   <div class="container-fluid membersBg mt-3">
 
   
-    <form  form="ngForm"  class="text-center form-inline" novalidate>
+    <form  form="ngForm" (ngSubmit)="loadUsers()" class="text-center form-inline" novalidate>
     
         <label for="minAge">Lägsta ålder </label>
-        <input type="number" class="input-small m-2" style="width: 70px" id="minAge"
+        <input type="number" [(ngModel)]="userParams.minAge" class="input-small m-2" style="width: 70px" id="minAge"
           name="minAge">
      
   
       
         <label for="maxAge">Max ålder </label>
-        <input type="number"  class="input-small m-2" style="width: 70px" id="maxAge"
+        <input type="number" [(ngModel)]="userParams.maxAge" class="input-small m-2" style="width: 70px" id="maxAge"
           name="maxAge">
      
   
       
         <label for="gender">Visa</label>
-        <select  class="input-small m-2" style="width: 130px" id="gender" name="gender">
-          <option >
-          
+        <select [(ngModel)]="userParams.gender" class="input-small m-2" style="width: 130px" id="gender" name="gender">
+          <option *ngFor="let gender of genderList"[value]="gender.value" >
+          {{gender.display}}
           </option>
         </select>
       
       <button type="submit"  class="btn btn-danger m-2 ">Sök</button>
-      <button type="button"   class="btn btn-danger m-2">Återställa</button>
+      <button type="button" (click)="resetFilter()"  class="btn btn-danger m-2">Återställa</button>
   
     </form>
    <br>

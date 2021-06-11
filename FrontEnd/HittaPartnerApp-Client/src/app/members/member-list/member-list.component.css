@@ -19,4 +19,35 @@
 {
   border-radius: 5px;
 }
+.btn-dark
+{
+  background-color: red !important;
+  color: white;
+}
+.btn-dark:enabled:hover {
+  text-decoration: none;
+ color: red !important;
+  background:white !important;
+ }
+
+.btn-up {
+  border-radius: 16px 16px 0 0/13px 17px 16px 16px !important; 
+  border: none !important;
+  
+}
+.btn-down {
+border-radius: 0px 0px 16px 16px/16px 16px 16px 16px !important; 
+border: none !important;
+}
+.ajs-button:active,.ajs-button:focus{
+  background:red !important;
+  border: none !important;
+  text-decoration: none;
+  color: white !important;
+  outline:none !important;
+  outline:0 !important;
+}
+button:focus { outline:0 !important;
+  outline:none !important;box-shadow:none; }
+
 

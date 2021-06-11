@@ -25,9 +25,17 @@
           </option>
         </select>
       
-      <button type="submit"  class="btn btn-danger m-2 ">Sök</button>
-      <button type="button" (click)="resetFilter()"  class="btn btn-danger m-2">Återställa</button>
-  
+      <button type="submit"  class="btn btn-dark m-2 ">Sök</button>
+      <button type="button" (click)="resetFilter()"  class="btn btn-dark m-2">Återställa</button>
+
+      <div class="col" >
+        <div class="btn-group-vertical float-left">
+          <button type="button" [(ngModel)]="userParams.orderBy" btnRadio="lastActive" (click)="loadUsers();" name="orderBy" class="btn mb-1 ajs-button btn-up" [ngStyle]="{'background':userParams.orderBy==='lastActive'?'red' : ''}" >Senaste sedd</button>
+          
+          <button type="button" [(ngModel)]="userParams.orderBy" (click)="loadUsers();" btnRadio="created" name="orderBy" class="btn ajs-button btn-down" [ngStyle]="{'background':userParams.orderBy==='created'?'red' : ''}">Senaste Prenumerera</button>
+        </div>
+      </div>
+
     </form>
    <br>
           <div class="row">

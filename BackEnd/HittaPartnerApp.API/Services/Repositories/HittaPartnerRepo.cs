@@ -33,7 +33,7 @@ namespace HittaPartnerApp.API.Services.Repositories
 
         public async Task<PagedList<User>> GetAllUsers(UserParams userParams)
         {
-            var users = _dbcontext.users.Include(x => x.Photos).AsQueryable();
+            var users = _dbcontext.users.Include(x => x.Photos).OrderByDescending(u=>u.LastActive).AsQueryable();
             users = users.Where(u =>u.ID!=userParams.UserId);
             users = users.Where(u => u.Gender.Equals(userParams.Gender));
             if (userParams.MinAge != 18 || userParams.MaxAge != 99)
@@ -41,6 +41,18 @@ namespace HittaPartnerApp.API.Services.Repositories
                 var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
                 var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
                 users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
+            }
+            if(!string.IsNullOrEmpty(userParams.OrdarBy))
+            {
+                switch (userParams.OrdarBy)
+                {
+                    case "created":
+                    users = users.OrderByDescending(u => u.created);
+                        break;
+                    default:
+                        users = users.OrderByDescending(u => u.LastActive);
+                        break;
+                }
             }
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);

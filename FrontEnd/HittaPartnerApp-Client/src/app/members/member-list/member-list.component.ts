@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PaginationComponent } from 'ngx-bootstrap/pagination';
+import { Pagination, PaginationResult } from 'src/app/_models/pagination';
 import { User } from '../../_models/user';
 import { AlertifyService } from '../../_services/alertify.service';
 import { UserService } from '../../_services/user.service';
@@ -12,21 +14,31 @@ import { UserService } from '../../_services/user.service';
 export class MemberListComponent implements OnInit {
   
  users!: User[];
+ pagination !: Pagination 
   constructor(private userService:UserService,private alertify:AlertifyService,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(
-      data=>{this.users=data['users'].result}
+      data=>{
+        this.users=data['users'].result,
+        this.pagination= data['users'].pagination
+      }
     )
-    //this.loadUsers();
+   
   }
-  //loadUsers(){
-   // this.userService.getAllUsers().subscribe((users:User[])=>
-   // {
-   //   this.users=users;
-   // },
-  // error=> {this.alertify.error(error)}
-  //  )
- // }
+  pageChanged(event:any){
+    this.pagination.currentPage=event.page;
+    this.loadUsers();
+  }
+  loadUsers(){
+   this.userService.getAllUsers(this.pagination.currentPage,this.pagination.itemsPerPage)
+   .subscribe((users:PaginationResult<User[]>)=>
+    {
+      this.users=users.result;
+      this.pagination=users.pagination;
+    },
+   error=> {this.alertify.error(error)}
+    )
+  }
 
 }

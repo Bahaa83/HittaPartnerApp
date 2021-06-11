@@ -1,7 +1,11 @@
-.membersBg
+:host /deep/.membersBg
 {
-    width: 98%;
-    background: url('src/assets/images/pexels-juan-pablo-serrano-arenas-1242348.jpg') no-repeat center 20%;
+    width: 100%;
+    background: url('src/assets/images/blur_bg_X2.jpg') no-repeat center 20%;
     background-size: cover;
-    position:absolute;
+   
+}
+:host /deep/.pagination-sm .page-link 
+{
+  font-size: 1.1rem;
 }

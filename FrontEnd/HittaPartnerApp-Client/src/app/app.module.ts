@@ -38,6 +38,7 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 
@@ -81,6 +82,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     TabsModule.forRoot(),
+    PaginationModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

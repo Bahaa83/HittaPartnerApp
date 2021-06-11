@@ -33,7 +33,15 @@ namespace HittaPartnerApp.API.Services.Repositories
 
         public async Task<PagedList<User>> GetAllUsers(UserParams userParams)
         {
-           var users=  _dbcontext.users.Include(x=>x.Photos);
+            var users = _dbcontext.users.Include(x => x.Photos).AsQueryable();
+            users = users.Where(u =>u.ID!=userParams.UserId);
+            users = users.Where(u => u.Gender.Equals(userParams.Gender));
+            if (userParams.MinAge != 18 || userParams.MaxAge != 99)
+            {
+                var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+                var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
+                users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
+            }
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }

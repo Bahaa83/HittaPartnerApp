@@ -58,6 +58,12 @@ namespace HittaPartnerApp.API.Services.Repositories
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
 
+        public async Task<Like> GetLike(string userId, string recipientId)
+        {
+            return await _dbcontext.Likes.FirstOrDefaultAsync(l => l.LikerID.Equals(userId)
+            && l.LikeeID.Equals(recipientId));
+        }
+
         public async Task<Photo> GetMainPhotoForUser(string userId)
         {
             var mainPhoto = await _dbcontext.Photos.Where(p => p.UserID.Equals(userId)).FirstOrDefaultAsync(p=>p.IsMain);

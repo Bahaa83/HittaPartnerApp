@@ -44,10 +44,10 @@ namespace HittaPartnerApp.API.Controllers
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var currentUser = await _hittaPartnerRepo.GetUserByID(currentUserId);
             userParams.UserId = currentUserId;
-            if (string.IsNullOrEmpty(userParams.Gender))
-            {
+            //if (string.IsNullOrEmpty(userParams.Gender))
+            //{
                 userParams.Gender = currentUser.Gender=="Man" ? "Kvinna" : "Man";
-            }
+            //}
             var users = await _hittaPartnerRepo.GetAllUsers(userParams);
             var userToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
             Response.AddPagination(users.CurrentPage, users.PagesSize, users.TotalCount, users.TotalPages);
@@ -107,7 +107,7 @@ namespace HittaPartnerApp.API.Controllers
             }
             //kolla om den här användaren har gillat den medlemen innan?
             var like = await _hittaPartnerRepo.GetLike(id, recipientId);
-            if (like != null) return BadRequest("du gillade den här medlemmen tidigare");
+            if (like != null) return BadRequest("Du gillade den här medlemmen tidigare");
             like = new Like()
             {
                 LikerID = id,

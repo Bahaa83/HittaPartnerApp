@@ -73,6 +73,8 @@ namespace HittaPartnerApp.API.Services.Repositories
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
 
+      
+
         public async Task<Like> GetLike(string userId, string recipientId)
         {
             return await _dbcontext.Likes.FirstOrDefaultAsync(l => l.LikerID.Equals(userId)
@@ -115,6 +117,21 @@ namespace HittaPartnerApp.API.Services.Repositories
             {
                 return user.GroupOfPeopleILike.Where(u => u.LikerID.Equals(id)).Select(l => l.LikeeID).ToList();
             }
+        }
+
+
+        public async Task<Message> GetMessage(int id)
+        {
+            return await _dbcontext.Messages.FirstOrDefaultAsync(m => m.ID == id);
+        }
+
+        public async Task<PagedList<Message>> GetMessagesForUser()
+        {
+            throw new NotImplementedException();
+        }
+        public Task<IEnumerable<Message>> GetConfersation(int userId, int recipientId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

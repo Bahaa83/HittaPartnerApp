@@ -17,5 +17,8 @@ namespace HittaPartnerApp.API.Services.IRepositories
         Task<Photo> GetPhoto(string PhotoId);
         Task<Photo> GetMainPhotoForUser(string userId);
         Task<Like> GetLike(string Id, string recipientId);
+        Task<Message> GetMessage(int id);
+        Task<PagedList<Message>> GetMessagesForUser();
+        Task<IEnumerable<Message>> GetConfersation(int userId,int recipientId);
     }
 }

@@ -54,6 +54,10 @@ import { User } from '../_models/user';
             deletePhoto(userId:string,photoId:string){
               return this.http.delete(this.photobaseUrl+'Photos/DeletePhoto?userId='+userId+'&photoId='+photoId)
             }
-            
 
+            sendLike(id:string,recipientId:string){
+              return this.http.post(this.baseUrl+'SendLike?id='+id+'&recipientId='+recipientId,{});
+            }
+            
+           
  }

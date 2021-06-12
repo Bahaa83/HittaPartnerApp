@@ -20,5 +20,7 @@ namespace HittaPartnerApp.Models
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
+        public ICollection<Like> GroupOfFansOfMe{ get; set; }
+        public ICollection<Like> GroupOfPeopleILike { get; set; }
     }
 }

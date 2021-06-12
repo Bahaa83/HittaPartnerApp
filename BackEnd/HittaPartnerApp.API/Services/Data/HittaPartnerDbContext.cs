@@ -13,6 +13,7 @@ namespace HittaPartnerApp.API.Data
         
         public DbSet<User> users { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        override
 
 }
 }

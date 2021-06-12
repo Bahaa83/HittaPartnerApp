@@ -62,5 +62,13 @@
             <param name="userForUpdateDto">userForUpdateDto model</param>
             <returns>204 </returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.UsersController.SendLike(System.String,System.String)">
+            <summary>
+            Funktion för att skicka gilla till en annan medlem
+            </summary>
+            <param name="id">Änvandare Id som skickar gilla</param>
+            <param name="recipientId">ID för användaren till vilken gillande skickades</param>
+            <returns> Ok</returns>
+        </member>
     </members>
 </doc>

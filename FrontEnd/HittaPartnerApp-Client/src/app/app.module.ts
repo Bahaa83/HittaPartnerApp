@@ -39,6 +39,7 @@ import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.gu
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ListResolver } from './_resolvers/lists.resolver';
 
 
 
@@ -92,7 +93,8 @@ export function tokenGetter() {
       },
     }),
   ],
-  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard,PreventUnsavedChangesGuard,UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver ],
+  providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard,PreventUnsavedChangesGuard,
+    UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver,ListResolver ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

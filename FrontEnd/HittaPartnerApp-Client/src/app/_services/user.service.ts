@@ -15,7 +15,7 @@ import { User } from '../_models/user';
       baseUrl=environment.apiUrl+'Users/';
       photobaseUrl=environment.apiUrl;
       constructor(private http:HttpClient) { }
-      getAllUsers(page: number|null,itemsPerPage:number|null,userParams:any|null):Observable<PaginationResult<User[]>>
+      getAllUsers(page?: number,itemsPerPage?:number,userParams?:any,likeParam?:string):Observable<PaginationResult<User[]>>
       {
        const paginationResult:PaginationResult<User[]>= new PaginationResult<User[]>();
        let params= new HttpParams();
@@ -30,6 +30,13 @@ import { User } from '../_models/user';
         params= params.append('gender',userParams.gender);
         params= params.append('orderBy',userParams.orderBy);
        }
+       if(likeParam ==='Likers'){
+         params= params.append('likers','true');
+       }
+       if(likeParam ==='Likees'){
+        params= params.append('likees','true');
+      }
+
       return this.http.get<User[]|any>(this.baseUrl+'GetAllUsers',{observe:'response',params}).pipe(
         map(response=>{
           paginationResult.result=response.body;

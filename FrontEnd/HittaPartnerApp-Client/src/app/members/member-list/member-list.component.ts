@@ -18,6 +18,7 @@ export class MemberListComponent implements OnInit {
  genderList=[{value:'Man',display:'Män'},{value:'Kvinna',display:'Kvinnor'}]
  userParams:any={};
  pagination !: Pagination 
+ search:boolean=false;
   constructor(private userService:UserService,private alertify:AlertifyService,private route:ActivatedRoute) { }
 
   ngOnInit() {
@@ -45,6 +46,9 @@ export class MemberListComponent implements OnInit {
     this.loadUsers();
   }
   loadUsers(){
+    if(!this.search){
+      this.pagination.currentPage=1;
+    }
    this.userService.getAllUsers(this.pagination.currentPage,this.pagination.itemsPerPage,this.userParams)
    .subscribe((users:PaginationResult<User[]>)=>
     {

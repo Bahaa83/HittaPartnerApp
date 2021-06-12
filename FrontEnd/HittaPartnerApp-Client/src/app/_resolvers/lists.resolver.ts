@@ -8,16 +8,18 @@ import { AlertifyService } from "../_services/alertify.service";
 import { UserService } from "../_services/user.service";
 
 @Injectable()
-export class MemberListResolver implements Resolve<PaginationResult<User[]>>{
+export class ListResolver implements Resolve<PaginationResult<User[]>>{
     pageNumber=1;
     pageSize=6;
+    likeParam='Likers'
+    
    
     constructor(private userService:UserService,private router:Router,private alertify:AlertifyService) {
         
     }
     resolve(route:ActivatedRouteSnapshot):Observable <PaginationResult<User[]>>{
        
-        return this.userService.getAllUsers(this.pageNumber,this.pageSize).pipe(
+        return this.userService.getAllUsers(this.pageNumber,this.pageSize,null,this.likeParam).pipe(
             catchError(error=>{
                 this.alertify.error("Det är ett problem att visa data");
                 this.router.navigate(['']);

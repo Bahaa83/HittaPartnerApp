@@ -1,3 +1,32 @@
-<p class="text-center mt-10">
-  lists works!mnbvnv
-</p>
+﻿ <div class="col-md-11 text-center mt-3">
+  <h3 style="margin-right:145px;color: brown;">{{likeParam === 'Likers' ? 'Gillade mig ' : 
+    'Gillade jag'}} : {{pagination.totalItems}}
+  </h3>
+</div>
+
+<div class=" ListsBg container-fluid  mt-1">
+ 
+    <div class="row">
+              
+        <div class="col-md-1 float-left mt-3">
+            <div class="btn-group-vertical">
+              <button type="button" [(ngModel)]="likeParam" btnRadio="Likers" (click)="loadUsers();"  class="btn btn-dark mb-1 ajs-button btn-up"
+                [ngStyle]="{'background':likeParam ==='Likers'?'red' : ''}"> Fans</button>
+              <button type="button" [(ngModel)]="likeParam" (click)="loadUsers();" btnRadio="Likees"  class="btn btn-dark ajs-button btn-down"
+                [ngStyle]="{'background':likeParam ==='Likees'?'red' : ''}"> Gillar</button>
+            </div>
+        </div>
+    </div>
+        <div class="row mt-4 ">
+          <div *ngFor="let user of users" class="col-sm-6 col-md-4 col-lg-4 col-xl-2">
+            <app-member-card [user]="user"></app-member-card>
+          </div>
+        </div>
+
+    <div *ngIf="pagination.totalItems>0" class="d-flex justify-content-center">
+      <pagination [boundaryLinks]="true" [itemsPerPage]="pagination.itemsPerPage" [totalItems]="pagination.totalItems"
+        [(ngModel)]="pagination.currentPage" (pageChanged)="search=true;pageChanged($event);" previousText="&lsaquo;"
+        nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+      </pagination>
+    </div>
+</div>

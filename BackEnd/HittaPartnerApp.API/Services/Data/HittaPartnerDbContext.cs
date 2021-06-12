@@ -13,7 +13,27 @@ namespace HittaPartnerApp.API.Data
         
         public DbSet<User> users { get; set; }
         public DbSet<Photo> Photos { get; set; }
-        override
+        public DbSet<Like> Likes { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Like>()
+                .HasKey(k => new { k.LikerID, k.LikeeID });
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.Likee)
+                .WithMany(u => u.GroupOfFansOfMe)
+                .HasForeignKey(l => l.LikeeID)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Like>()
+                .HasKey(k => new { k.LikerID, k.LikeeID });
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.Liker)
+                .WithMany(u => u.GroupOfPeopleILike)
+                .HasForeignKey(l => l.LikerID)
+                .OnDelete(DeleteBehavior.Restrict);
 
-}
+                
+            base.OnModelCreating(modelBuilder);
+        }
+
+    }
 }

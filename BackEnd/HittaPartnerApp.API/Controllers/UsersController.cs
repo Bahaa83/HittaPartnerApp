@@ -73,7 +73,7 @@ namespace HittaPartnerApp.API.Controllers
         /// <param name="userID">ID:string</param>
         /// <param name="userForUpdateDto">userForUpdateDto model</param>
         /// <returns>204 </returns>
-        [Authorize]
+       
         [ProducesResponseType(204)]
         [ProducesDefaultResponseType]
         [HttpPut("UpdateUser")]
@@ -88,6 +88,35 @@ namespace HittaPartnerApp.API.Controllers
             if(await _hittaPartnerRepo.SaveAll())
             return NoContent();
             throw new Exception("Det uppstod ett problem vid ändring av abonnentens data");
+        }
+       
+        /// <summary>
+        /// Funktion för att skicka gilla till en annan medlem
+        /// </summary>
+        /// <param name="id">Änvandare Id som skickar gilla</param>
+        /// <param name="recipientId">ID för användaren till vilken gillande skickades</param>
+        /// <returns> Ok</returns>
+        [HttpPost("SendLike")]
+        [ProducesResponseType(200)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult>SendLike(string id,string recipientId)
+        {
+            if (id != User.FindFirst(ClaimTypes.NameIdentifier).Value)
+            {
+                return Unauthorized();
+            }
+            //kolla om den här användaren har gillat den medlemen innan?
+            var like = await _hittaPartnerRepo.GetLike(id, recipientId);
+            if (like != null) return BadRequest("du gillade den här medlemmen tidigare");
+            like = new Like()
+            {
+                LikerID = id,
+                LikeeID=recipientId
+            
+            };
+            _hittaPartnerRepo.Add(like);
+            if (!await _hittaPartnerRepo.SaveAll()) return BadRequest("Det gick inte att gilla");
+            return Ok();
         }
 
     }

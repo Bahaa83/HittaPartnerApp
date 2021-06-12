@@ -14,6 +14,8 @@ namespace HittaPartnerApp.API.Data
         public DbSet<User> users { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<Message> Messages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Like>()
@@ -31,7 +33,19 @@ namespace HittaPartnerApp.API.Data
                 .HasForeignKey(l => l.LikerID)
                 .OnDelete(DeleteBehavior.Restrict);
 
-                
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany(u => u.MessagesSent)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Message>()
+                   .HasOne(m => m.Recipien)
+                   .WithMany(u => u.MessagesReceived)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+
+
             base.OnModelCreating(modelBuilder);
         }
 

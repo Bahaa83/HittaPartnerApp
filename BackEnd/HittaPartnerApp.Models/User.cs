@@ -22,5 +22,7 @@ namespace HittaPartnerApp.Models
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Like> GroupOfFansOfMe{ get; set; }
         public ICollection<Like> GroupOfPeopleILike { get; set; }
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
     }
 }

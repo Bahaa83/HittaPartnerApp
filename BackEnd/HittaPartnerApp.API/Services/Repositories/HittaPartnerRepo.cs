@@ -36,12 +36,27 @@ namespace HittaPartnerApp.API.Services.Repositories
             var users = _dbcontext.users.Include(x => x.Photos).OrderByDescending(u=>u.LastActive).AsQueryable();
             users = users.Where(u =>u.ID!=userParams.UserId);
             users = users.Where(u => u.Gender.Equals(userParams.Gender));
+            if(userParams.likers) 
+            {
+                //hämta id for de som gilla nuvarande användaren
+                var userLikers = GetUserLikes(userParams.UserId, userParams.likers);
+                //hämta medlemmar som de gillar mig ;)
+                users = users.Where(u => userLikers.Result.Contains(u.ID));
+            }
+            if (userParams.likees)
+            {
+                var userLikees = GetUserLikes(userParams.UserId, userParams.likers);
+                //hämta medlemmar som jag gillade de ;)
+                users = users.Where(u => userLikees.Result.Contains(u.ID));
+            }
+
             if (userParams.MinAge != 18 || userParams.MaxAge != 99)
             {
                 var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
                 var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
                 users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
             }
+
             if(!string.IsNullOrEmpty(userParams.OrderBy))
             {
                 switch (userParams.OrderBy)
@@ -85,6 +100,21 @@ namespace HittaPartnerApp.API.Services.Repositories
         public async Task<bool> SaveAll()
         {
             return await _dbcontext.SaveChangesAsync() > 0 ? true : false;
+        }
+
+        private async Task<List<string>> GetUserLikes(string id,bool likers)
+        {
+            var user = await _dbcontext.users.Include(u => u.GroupOfFansOfMe).Include(u => u.GroupOfPeopleILike)
+                .FirstOrDefaultAsync(u => u.ID.Equals(id));
+            if(likers)
+            {
+
+                return user.GroupOfFansOfMe.Where(u => u.LikeeID.Equals(id)).Select(l => l.LikerID).ToList();
+            }
+            else
+            {
+                return user.GroupOfPeopleILike.Where(u => u.LikerID.Equals(id)).Select(l => l.LikeeID).ToList();
+            }
         }
     }
 }

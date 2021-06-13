@@ -132,14 +132,14 @@ namespace HittaPartnerApp.API.Services.Repositories
             switch (messageParams.MessageType)
             {
                 case "Inbox":
-                    messages = messages.Where(m => m.RecipientID.Equals(messageParams.UserId));
+                    messages = messages.Where(m => m.RecipientID==messageParams.UserId);
                     break;
-                case "OutBox":
-                    messages = messages.Where(m => m.SenderID.Equals(messageParams.UserId));
+                case "Outbox":
+                    messages = messages.Where(m => m.SenderID==messageParams.UserId);
                     break;
                
-                default://Oläst
-                    messages = messages.Where(m => m.RecipientID.Equals(messageParams.UserId) && m.IsRead==false);
+                default :
+                    messages = messages.Where(m => m.RecipientID==messageParams.UserId && m.IsRead==false);
                     break;
             }
             messages = messages.OrderByDescending(m => m.MessageSent);

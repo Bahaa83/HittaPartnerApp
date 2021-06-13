@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HittaPartnerApp.API.Migrations
 {
     [DbContext(typeof(HittaPartnerDbContext))]
-    [Migration("20210613012050_messagesent")]
-    partial class messagesent
+    [Migration("20210613135006_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,6 +60,9 @@ namespace HittaPartnerApp.API.Migrations
 
                     b.Property<string>("RecipienID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RecipientID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("SenderDeleted")
                         .HasColumnType("bit");

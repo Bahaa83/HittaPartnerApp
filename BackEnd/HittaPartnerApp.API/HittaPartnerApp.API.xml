@@ -34,6 +34,14 @@
             <param name="messageForCreation">messageForCreation model</param>
             <returns> MessageForCreationDto</returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.MessagesController.GetMessagesForUser(System.String,HittaPartnerApp.Models.MessageParams)">
+            <summary>
+            Funktion returnerar Alla meddelanden
+            </summary>
+            <param name="userId"></param>
+            <param name="messageParams"></param>
+            <returns> List av MessageToReturnDto </returns>
+        </member>
         <member name="M:HittaPartnerApp.API.Controllers.PhotosController.AddPhotoForUser(System.String,HittaPartnerApp.API.Services.DtoModels.PhotoForUserDto)">
             <summary>
             Funktion för att Lägga till ett foto och visa det

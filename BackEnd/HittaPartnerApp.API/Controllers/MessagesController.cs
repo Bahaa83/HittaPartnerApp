@@ -79,6 +79,26 @@ namespace HittaPartnerApp.API.Controllers
             return CreatedAtRoute("GetMessage", new {id=message.ID }, messageToReturn);
             throw new Exception();
         }
-
+        /// <summary>
+        /// Funktion returnerar Alla meddelanden
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="messageParams"></param>
+        /// <returns> List av MessageToReturnDto </returns>
+        [HttpGet("GetMessagesForUser")]
+        [ProducesResponseType(200)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult>GetMessagesForUser(string userId,[FromQuery]MessageParams messageParams)
+        {
+            if (userId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                return Unauthorized();
+            }
+            messageParams.UserId = userId;
+           var messagesFromRepo = await _hittaPartnerRepo.GetMessagesForUser(messageParams);
+            var messages = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+            Response.AddPagination(messagesFromRepo.CurrentPage,messagesFromRepo.PagesSize,messagesFromRepo.TotalCount,messagesFromRepo.TotalPages);
+            return Ok(messages);
+        }
     }
 }

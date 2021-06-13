@@ -125,9 +125,25 @@ namespace HittaPartnerApp.API.Services.Repositories
             return await _dbcontext.Messages.FirstOrDefaultAsync(m => m.ID == id);
         }
 
-        public async Task<PagedList<Message>> GetMessagesForUser()
+        public async Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams)
         {
-            throw new NotImplementedException();
+            var messages = _dbcontext.Messages.Include(m => m.Sender).ThenInclude(u => u.Photos)
+                .Include(m => m.Recipien).ThenInclude(u => u.Photos).AsQueryable();
+            switch (messageParams.MessageType)
+            {
+                case "Inbox":
+                    messages = messages.Where(m => m.RecipienID.Equals(messageParams.UserId));
+                    break;
+                case "OutBox":
+                    messages = messages.Where(m => m.SenderID.Equals(messageParams.UserId));
+                    break;
+               
+                default://Oläst
+                    messages = messages.Where(m => m.RecipienID.Equals(messageParams.UserId) && m.IsRead==false);
+                    break;
+            }
+            messages = messages.OrderByDescending(m => m.MessageSent);
+            return await PagedList<Message>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
         }
         public Task<IEnumerable<Message>> GetConfersation(int userId, int recipientId)
         {

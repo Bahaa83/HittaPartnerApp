@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HittaPartnerApp.API.Services.DtoModels;
+using HittaPartnerApp.API.Services.DtoModels.MessageModel;
 using HittaPartnerApp.Models;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace HittaPartnerApp.API.Helpers
             CreateMap<Photo, PhotoForReturnDto>().ReverseMap();
             CreateMap<PhotoForUserDto,Photo>();
             CreateMap<UserForRegisterDto,User>();
+            CreateMap<MessageForCreationDto, Message>().ReverseMap();
+
 
         }
     }

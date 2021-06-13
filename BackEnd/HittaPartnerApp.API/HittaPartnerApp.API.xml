@@ -18,6 +18,22 @@
             <param name="userForLoginDto">UserForLoginDto model från klientsida </param>
             <returns></returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.MessagesController.GetMessage(System.String,System.Int32)">
+            <summary>
+            Funktion för att hämta en meddelande
+            </summary>
+            <param name="userId"></param>
+            <param name="messageId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HittaPartnerApp.API.Controllers.MessagesController.CreateMessage(System.String,HittaPartnerApp.API.Services.DtoModels.MessageModel.MessageForCreationDto)">
+            <summary>
+            Funktion för att skåpa meddelande
+            </summary>
+            <param name="userId">User Id</param>
+            <param name="messageForCreation">messageForCreation model</param>
+            <returns> MessageForCreationDto</returns>
+        </member>
         <member name="M:HittaPartnerApp.API.Controllers.PhotosController.AddPhotoForUser(System.String,HittaPartnerApp.API.Services.DtoModels.PhotoForUserDto)">
             <summary>
             Funktion för att Lägga till ett foto och visa det

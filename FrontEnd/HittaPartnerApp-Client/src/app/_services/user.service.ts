@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Message } from '../_models/message';
 import { PaginationResult } from '../_models/pagination';
 import { User } from '../_models/user';
 
@@ -14,6 +15,7 @@ import { User } from '../_models/user';
       export class UserService {
       baseUrl=environment.apiUrl+'Users/';
       photobaseUrl=environment.apiUrl;
+      messagebaseUrl=environment.apiUrl;
       constructor(private http:HttpClient) { }
       getAllUsers(page?: number,itemsPerPage?:number,userParams?:any,likeParam?:string):Observable<PaginationResult<User[]>>
       {
@@ -65,6 +67,26 @@ import { User } from '../_models/user';
             sendLike(id:string,recipientId:string){
               return this.http.post(this.baseUrl+'SendLike?id='+id+'&recipientId='+recipientId,{});
             }
-            
+            getMessgaes(id:string,page?:number,itemsPerPage?:number,messageType?:string){
+              const paginationResult:PaginationResult<Message[]>= new PaginationResult<Message[]>();
+              let params=new HttpParams();
+              if(messageType!=null && itemsPerPage!=null&&page!=null){
+                
+                params=params.append('pageNumber',page);
+                params= params.append('pageSize',itemsPerPage);
+                params=params.append('MessageType',messageType);
+              }
+              return this.http.get<Message[]|any>(this.messagebaseUrl+'Messages/GetMessagesForUser?userId='+id,{observe:'response',params}).pipe(
+                map(response=>{
+                  paginationResult.result=response.body;
+                  if(response.headers.get('Pagination')!==null){
+                    paginationResult.pagination= JSON.parse(response.headers.get('Pagination')!);
+
+                  }
+                  return paginationResult;
+                })
+              );
+             
+            }
            
  }

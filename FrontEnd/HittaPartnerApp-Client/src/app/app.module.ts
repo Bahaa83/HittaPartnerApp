@@ -40,6 +40,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ListResolver } from './_resolvers/lists.resolver';
+import { MessageResolver } from './_resolvers/message.resolver';
 
 
 
@@ -94,7 +95,7 @@ export function tokenGetter() {
     }),
   ],
   providers: [AccountService,ErrorInceptorProvidor,AlertifyService,AuthGuard,PreventUnsavedChangesGuard,
-    UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver,ListResolver ],
+    UserService,MemberDetailResolver,MemberListResolver,MemberEditResolver,ListResolver,MessageResolver ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

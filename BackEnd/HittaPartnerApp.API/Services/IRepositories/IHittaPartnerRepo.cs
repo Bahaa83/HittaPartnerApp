@@ -19,6 +19,6 @@ namespace HittaPartnerApp.API.Services.IRepositories
         Task<Like> GetLike(string Id, string recipientId);
         Task<Message> GetMessage(int id);
         Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams);
-        Task<IEnumerable<Message>> GetConfersation(int userId,int recipientId);
+        Task<IEnumerable<Message>> GetConversation(string userId,string recipientId);
     }
 }

@@ -145,7 +145,7 @@ namespace HittaPartnerApp.API.Services.Repositories
             messages = messages.OrderByDescending(m => m.MessageSent);
             return await PagedList<Message>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
         }
-        public async Task<IEnumerable<Message>> GetConfersation(string userId, string recipientId)
+        public async Task<IEnumerable<Message>> GetConversation(string userId, string recipientId)
         {
             var messages = await _dbcontext.Messages.Include(m => m.Sender).ThenInclude(u => u.Photos)
                  .Include(m => m.Recipien).ThenInclude(u => u.Photos)

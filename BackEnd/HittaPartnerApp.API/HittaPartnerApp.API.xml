@@ -42,6 +42,14 @@
             <param name="messageParams"></param>
             <returns> List av MessageToReturnDto </returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.MessagesController.GetConversation(System.String,System.String)">
+            <summary>
+            Funktion För att hämta alla meddelander mellan avsändare och mottagaren
+            </summary>
+            <param name="userId"></param>
+            <param name="recipientId"></param>
+            <returns> lista av MessageToReturnDto</returns>
+        </member>
         <member name="M:HittaPartnerApp.API.Controllers.PhotosController.AddPhotoForUser(System.String,HittaPartnerApp.API.Services.DtoModels.PhotoForUserDto)">
             <summary>
             Funktion för att Lägga till ett foto och visa det

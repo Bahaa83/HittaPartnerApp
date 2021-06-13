@@ -100,5 +100,24 @@ namespace HittaPartnerApp.API.Controllers
             Response.AddPagination(messagesFromRepo.CurrentPage,messagesFromRepo.PagesSize,messagesFromRepo.TotalCount,messagesFromRepo.TotalPages);
             return Ok(messages);
         }
+        /// <summary>
+        /// Funktion För att hämta alla meddelander mellan avsändare och mottagaren
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="recipientId"></param>
+        /// <returns> lista av MessageToReturnDto</returns>
+        [HttpGet("GetConversation")]
+        [ProducesResponseType(200)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> GetConversation(string userId,string recipientId)
+        {
+            if (userId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                return Unauthorized();
+            }
+            var messagesFromRepo = await _hittaPartnerRepo.GetConversation(userId, recipientId);
+            var messageToreturn = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+            return Ok(messageToreturn);
+        }
     }
 }

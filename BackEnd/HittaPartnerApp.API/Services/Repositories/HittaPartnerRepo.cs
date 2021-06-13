@@ -132,14 +132,14 @@ namespace HittaPartnerApp.API.Services.Repositories
             switch (messageParams.MessageType)
             {
                 case "Inbox":
-                    messages = messages.Where(m => m.RecipienID.Equals(messageParams.UserId));
+                    messages = messages.Where(m => m.RecipientID.Equals(messageParams.UserId));
                     break;
                 case "OutBox":
                     messages = messages.Where(m => m.SenderID.Equals(messageParams.UserId));
                     break;
                
                 default://Oläst
-                    messages = messages.Where(m => m.RecipienID.Equals(messageParams.UserId) && m.IsRead==false);
+                    messages = messages.Where(m => m.RecipientID.Equals(messageParams.UserId) && m.IsRead==false);
                     break;
             }
             messages = messages.OrderByDescending(m => m.MessageSent);
@@ -149,8 +149,8 @@ namespace HittaPartnerApp.API.Services.Repositories
         {
             var messages = await _dbcontext.Messages.Include(m => m.Sender).ThenInclude(u => u.Photos)
                  .Include(m => m.Recipien).ThenInclude(u => u.Photos)
-                 .Where(m => m.RecipienID.Equals(userId) && m.SenderID.Equals(recipientId)
-                 || m.RecipienID.Equals(recipientId) && m.SenderID.Equals(userId))
+                 .Where(m => m.RecipientID.Equals(userId) && m.SenderID.Equals(recipientId)
+                 || m.RecipientID.Equals(recipientId) && m.SenderID.Equals(userId))
                  .OrderByDescending(m => m.MessageSent).ToListAsync();
             return messages;
 

@@ -12,9 +12,9 @@ namespace HittaPartnerApp.API.Services.DtoModels.MessageModel
         public string SenderID { get; set; }
         public string SenderKnownAs { get; set; }
         public string SenderPhotoUrl { get; set; }
-        public string RecipienID { get; set; }
-        public string RecipienKnownAs { get; set; }
-        public string RecipienPhotoUrl { get; set; }
+        public string RecipientID { get; set; }
+        public string RecipientKnownAs { get; set; }
+        public string RecipientPhotoUrl { get; set; }
 
         public string Content { get; set; }
         public bool IsRead { get; set; }

@@ -12,8 +12,8 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-messages!:Message[];
-pagination!:Pagination;
+messages:Message[]|any;
+pagination:Pagination|any;
 messageType='Unread'
   constructor(private userService :UserService, private authService:AccountService,private route:ActivatedRoute
     ,private alertify :AlertifyService) { }
@@ -21,12 +21,12 @@ messageType='Unread'
   ngOnInit() {
     this.route.data.subscribe(
       data=>{
-        this.messages= data['Messages'].result;
-        this.pagination= data['Messages'].pagination;
+        this.messages= data['messages'].result;
+        this.pagination= data['messages'].pagination;
       }
     )
   }
-  loadMessage(){
+  loadMessages(){
     this.userService.getMessgaes(this.authService.decodedToken.nameid,this.pagination.currentPage,
       this.pagination.itemsPerPage,this.messageType).subscribe(
         (res:PaginationResult<Message[]>)=>{
@@ -38,7 +38,7 @@ messageType='Unread'
   }
   pageChanged(event:any){
     this.pagination.currentPage=event.page;
-    this.loadMessage();
+    this.loadMessages();
   }
 
 }

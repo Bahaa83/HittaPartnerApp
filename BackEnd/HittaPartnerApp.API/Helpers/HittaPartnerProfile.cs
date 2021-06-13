@@ -25,7 +25,9 @@ namespace HittaPartnerApp.API.Helpers
             CreateMap<PhotoForUserDto,Photo>();
             CreateMap<UserForRegisterDto,User>();
             CreateMap<MessageForCreationDto, Message>().ReverseMap();
-            CreateMap<Message, MessageToReturnDto>();
+            CreateMap<Message, MessageToReturnDto>()
+                .ForMember(x => x.SenderPhotoUrl, opt => opt.MapFrom(x => x.Sender.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(x => x.RecipienPhotoUrl, opt => opt.MapFrom(x => x.Recipien.Photos.FirstOrDefault(x => x.IsMain).Url));
 
 
         }

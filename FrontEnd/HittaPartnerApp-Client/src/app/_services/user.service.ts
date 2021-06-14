@@ -89,5 +89,9 @@ import { User } from '../_models/user';
               );
              
             }
-           
+
+            getConversation(id:string,recipientid:string){
+              return this.http.get<Message[]>(this.messagebaseUrl+'Messages/GetConversation?userid='+id+'&recipientId='+recipientid);
+            }
+            
  }

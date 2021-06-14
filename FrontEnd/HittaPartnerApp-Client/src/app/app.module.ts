@@ -41,6 +41,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ListResolver } from './_resolvers/lists.resolver';
 import { MessageResolver } from './_resolvers/message.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 
 
@@ -69,7 +70,8 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      DateAgoPipe
+      DateAgoPipe,
+      MemberMessagesComponent
    ],
   imports: [
     BrowserModule,

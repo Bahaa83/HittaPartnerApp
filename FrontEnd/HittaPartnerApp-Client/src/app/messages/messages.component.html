@@ -1,1 +1,60 @@
-﻿
+﻿<div class="container mt-5">
+  <div class="row">
+    <div class="btn-group">
+      <button class="btn btn-dark btn-up ajs-button mr-1" [(ngModel)]="messageType" btnRadio="Unread" (click)="loadMessages()" [ngStyle]="{'background':messageType =='Unread'?'red' : ''}">
+        <i class="fa fa-envelope"></i> Oläst
+      </button>
+      <button class="btn btn-dark btn-up ajs-button mr-1" [(ngModel)]="messageType" btnRadio="Inbox" (click)="loadMessages()" [ngStyle]="{'background':messageType =='Inbox'?'red' : ''}">
+        <i class="fa fa-envelope-open"></i>Inkorgar
+      </button>
+      <button class="btn btn-dark btn-up ajs-button" [(ngModel)]="messageType" btnRadio="Outbox" (click)="loadMessages()" [ngStyle]="{'background':messageType =='Outbox'?'red' : ''}">
+        <i class="fa fa-paper-plane"></i> Skickat
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="messages.length == 0">
+    <h3>Det finns inga meddelanden</h3>
+  </div>
+
+  <div class="row" *ngIf="messages.length > 0">
+    <table class="table table-hover mt-3" style="cursor: pointer;">
+      <tr>
+        <th style="text-align: left;width: 40%">Meddelande</th>
+        <th style="text-align: left;width: 20%">{{messageType=='Unread'|| messageType=='Inbox'?'Från':'Till'}}</th>
+        <th style="text-align: left;width: 20%">{{messageType=='Unread'|| messageType=='Inbox'?'Mottagen':'Skickat'}}</th>
+        <th style="width: 20%"></th>
+      </tr>
+      <tr *ngFor="let message of messages" [routerLink]="['/member/', 
+        messageType == 'Outbox' ? message.recipientID : message.senderID]">
+        <td class="mt-3" style="text-align: left;">{{message.content | slice:0:135}}</td>
+        <td class="mt-3" style=" text-align: center;cursor: pointer;font-size:12px;">
+              <div style="text-align: left;" *ngIf="messageType != 'Outbox'">
+                <strong  style="font-size:15px;margin-top: 3px;margin-right:5px;">{{message.senderKnownAs}}</strong>
+                    <img class="mt-3" style="max-height:50px;" src={{message?.senderPhotoUrl}} class="img-circle rounded-circle ml-1">
+              </div>
+            <div *ngIf="messageType == 'Outbox'">
+                <strong  style="font-size:15px;">{{message.recipientKnwonAs}}</strong>
+                  <img style="max-height:50px;" src={{message?.recipientPhotoUrl}} class="img-circle rounded-circle ml-1">
+            </div>
+        </td>
+        <td >{{message.messageSent|dateAgo}}</td>
+        <td>
+          <div class="text text-danger"><i style="font-size:28px;" class="fa fa-trash-o" title="Ta bort" aria-hidden="true"></i></div>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>
+
+<div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" 
+                [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage"
+                [(ngModel)]="pagination.currentPage"
+                (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+  </pagination>
+  </div>

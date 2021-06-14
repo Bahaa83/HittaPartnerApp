@@ -67,14 +67,15 @@ import { User } from '../_models/user';
             sendLike(id:string,recipientId:string){
               return this.http.post(this.baseUrl+'SendLike?id='+id+'&recipientId='+recipientId,{});
             }
-            getMessgaes(id:string,page?:number,itemsPerPage?:number,messageType?:string){
+            getMessgaes(id:string,page?:any,itemsPerPage?:any,messageType?:any){
               const paginationResult:PaginationResult<Message[]>= new PaginationResult<Message[]>();
               let params=new HttpParams();
-              if(messageType!=null && itemsPerPage!=null&&page!=null){
+              params=params.append('MessageType',messageType);
+              if(itemsPerPage!=null&&page!=null){
                 
                 params=params.append('pageNumber',page);
                 params= params.append('pageSize',itemsPerPage);
-                params=params.append('MessageType',messageType);
+                
               }
               return this.http.get<Message[]|any>(this.messagebaseUrl+'Messages/GetMessagesForUser?userId='+id,{observe:'response',params}).pipe(
                 map(response=>{

@@ -37,7 +37,7 @@ export const appRoutes:Routes=[
                 users:ListResolver
             }},
             {path:'messages',component:MessagesComponent,resolve:{
-                users:MessageResolver
+                messages:MessageResolver
             }}
         ]
     },

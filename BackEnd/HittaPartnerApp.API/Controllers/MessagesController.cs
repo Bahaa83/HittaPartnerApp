@@ -70,7 +70,7 @@ namespace HittaPartnerApp.API.Controllers
                 return Unauthorized();
             }
             messageForCreation.SenderID = userId;
-            var recipient = await _hittaPartnerRepo.GetUserByID(messageForCreation.RecipienID);
+            var recipient = await _hittaPartnerRepo.GetUserByID(messageForCreation.RecipientID);
             if (recipient == null) return BadRequest("Mottagaren är inte tillgänglig");
             var message = _mapper.Map<Message>(messageForCreation);
             _hittaPartnerRepo.Add(message);

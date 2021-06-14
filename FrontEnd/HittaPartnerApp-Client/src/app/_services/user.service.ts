@@ -93,5 +93,8 @@ import { User } from '../_models/user';
             getConversation(id:string,recipientid:string){
               return this.http.get<Message[]>(this.messagebaseUrl+'Messages/GetConversation?userid='+id+'&recipientId='+recipientid);
             }
+            sendMessage(id:string,message:Message){
+              return this.http.post(this.messagebaseUrl+'Messages/CreateMessage?userId='+id,message);
+            }
             
  }

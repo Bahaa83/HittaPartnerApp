@@ -12,6 +12,7 @@ import { UserService } from 'src/app/_services/user.service';
 export class MemberMessagesComponent implements OnInit {
 @Input() recipientId:string|any;
 messages:Message[]|any;
+newMessage:any={};
   constructor(private authService:AccountService,private userService:UserService,private alertify:AlertifyService) { }
 
   ngOnInit(): void {
@@ -25,5 +26,12 @@ messages:Message[]|any;
       error=>{this.alertify.error(error);}
     )
   }
-
+  sendMessage(){
+    this.newMessage.recipientId= this.recipientId;
+    this.userService.sendMessage(this.authService.decodedToken.nameid,this.newMessage).subscribe(
+     ( message:Message|any)=>{this.messages.push(message);
+      this.newMessage.content='';
+    }
+    )
+  }
 }

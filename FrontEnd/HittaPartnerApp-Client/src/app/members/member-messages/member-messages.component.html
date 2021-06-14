@@ -1,3 +1,75 @@
-<p *ngFor="let message of messages"
->
-{{message.content}}</p>
+<div class="card">
+    <div class="card-body">
+        <div style="font-weight:bold;font-size:1.2rem;" *ngIf="messages?.length === 0">
+            Inga meddelanden ännu ... Skriv Hej och skicka det för att starta en ny upplevelse
+        </div>
+
+        <ul class="chat">
+            <li *ngFor="let message of messages">
+                <!-- Inbox -->
+                <div *ngIf="message.senderID ==recipientId ">
+                    <div class="text-rihgt ">
+                        <div class="badge badge-primary">
+                            <span >
+                                <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}"
+                                    class="rounded-circle">
+                            </span>
+                            <strong class="ml-1" style="vertical-align: top;">{{message.senderKnownAs}}</strong>
+                            <small style="vertical-align: top;margin-right: 5px;" class="text-dark">
+                 <span class="fa fa-clock-o"><small>{{message.messageSent | dateAgo}}</small></span>
+                               
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="text-rihgt">
+                        <p class="content-inbox text text-primary d-inline-block">{{message.content}}</p>
+                    </div>
+
+                </div>
+
+
+                <!-- Outbox -->
+                <div *ngIf="message.senderID !=recipientId">
+                    <div class="text-left">
+                        <div class="badge badge-info ">
+                            <span class="chat-img">
+                                <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}"
+                                    class="rounded-circle">
+                            </span>
+                            <strong style="vertical-align: top;" class="ml-1">{{message.senderKnownAs}}</strong>
+                            <small style="vertical-align: top;margin-right: 5px;" class="text-muted">
+                                <span
+                                    class="align-middle  fa fa-clock-o"><small>{{message.messageSent | dateAgo}}</small></span>
+                                <strong *ngIf="!message.isRead" class="text-danger align-middle">(Ölast)</strong>
+                                <strong *ngIf="message.isRead" class="text-success align-middle">(Läst
+                                    {{message.dateRead | dateAgo}})</strong>
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <p class="text text-primary content-outbox ">{{message.content}}</p>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="card-footer">
+        <form #messageForm="ngForm" (ngSubmit)="messageForm.valid&& sendMessage()">
+            <div class="input-group">
+                <input [(ngModel)]="newMessage.content" type="text" name="content" required class="form-control input-sm"
+                 placeholder="Skriv ditt meddelande här">
+                <div class="input-group-append">
+                    <button [disabled]="!messageForm.valid" class="btn btn-primary ml-1">Skicka</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>

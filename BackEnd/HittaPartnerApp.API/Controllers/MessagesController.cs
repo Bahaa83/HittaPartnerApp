@@ -64,8 +64,8 @@ namespace HittaPartnerApp.API.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> CreateMessage(string userId, MessageForCreationDto messageForCreation )
         {
-
-            if (userId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            var sender = await _hittaPartnerRepo.GetUserByID(userId);
+            if (sender.ID != User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
                 return Unauthorized();
             }
@@ -74,9 +74,13 @@ namespace HittaPartnerApp.API.Controllers
             if (recipient == null) return BadRequest("Mottagaren är inte tillgänglig");
             var message = _mapper.Map<Message>(messageForCreation);
             _hittaPartnerRepo.Add(message);
-            var messageToReturn = _mapper.Map<MessageForCreationDto>(message);
+           
             if (await _hittaPartnerRepo.SaveAll())
-            return CreatedAtRoute("GetMessage", new {id=message.ID }, messageToReturn);
+            {
+                var messageToReturn = _mapper.Map<MessageToReturnDto>(message);
+                return CreatedAtRoute("GetMessage", new { id = message.ID }, messageToReturn);
+            }
+        
             throw new Exception();
         }
         /// <summary>

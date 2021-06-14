@@ -29,7 +29,9 @@ newMessage:any={};
   sendMessage(){
     this.newMessage.recipientId= this.recipientId;
     this.userService.sendMessage(this.authService.decodedToken.nameid,this.newMessage).subscribe(
-     ( message:Message|any)=>{this.messages.push(message);
+     ( message:Message|any)=>{
+     
+      this.messages.push(message);
       this.newMessage.content='';
     }
     )

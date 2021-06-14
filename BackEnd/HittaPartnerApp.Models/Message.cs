@@ -10,7 +10,7 @@ namespace HittaPartnerApp.Models
         public string SenderID { get; set; }
         public User Sender { get; set; }
         public string RecipientID { get; set; }
-        public User Recipien { get; set; }
+        public User Recipient { get; set; }
         public string Content { get; set; }
         public bool IsRead { get; set; } 
         public DateTime? DateRead { get; set; }

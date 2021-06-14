@@ -40,7 +40,7 @@ namespace HittaPartnerApp.API.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Message>()
-                   .HasOne(m => m.Recipien)
+                   .HasOne(m => m.Recipient)
                    .WithMany(u => u.MessagesReceived)
                    .OnDelete(DeleteBehavior.Restrict);
 

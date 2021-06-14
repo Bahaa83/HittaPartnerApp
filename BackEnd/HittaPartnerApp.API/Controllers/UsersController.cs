@@ -44,10 +44,10 @@ namespace HittaPartnerApp.API.Controllers
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var currentUser = await _hittaPartnerRepo.GetUserByID(currentUserId);
             userParams.UserId = currentUserId;
-            //if (string.IsNullOrEmpty(userParams.Gender))
-            //{
-                userParams.Gender = currentUser.Gender=="Man" ? "Kvinna" : "Man";
-            //}
+            if (string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender = currentUser.Gender == "Man" ? "Kvinna" : "Man";
+            }
             var users = await _hittaPartnerRepo.GetAllUsers(userParams);
             var userToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
             Response.AddPagination(users.CurrentPage, users.PagesSize, users.TotalCount, users.TotalPages);

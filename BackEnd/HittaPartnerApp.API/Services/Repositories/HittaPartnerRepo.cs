@@ -128,7 +128,7 @@ namespace HittaPartnerApp.API.Services.Repositories
         public async Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams)
         {
             var messages = _dbcontext.Messages.Include(m => m.Sender).ThenInclude(u => u.Photos)
-                .Include(m => m.Recipien).ThenInclude(u => u.Photos).AsQueryable();
+                .Include(m => m.Recipient).ThenInclude(u => u.Photos).AsQueryable();
             switch (messageParams.MessageType)
             {
                 case "Inbox":
@@ -148,7 +148,7 @@ namespace HittaPartnerApp.API.Services.Repositories
         public async Task<IEnumerable<Message>> GetConversation(string userId, string recipientId)
         {
             var messages = await _dbcontext.Messages.Include(m => m.Sender).ThenInclude(u => u.Photos)
-                 .Include(m => m.Recipien).ThenInclude(u => u.Photos)
+                 .Include(m => m.Recipient).ThenInclude(u => u.Photos)
                  .Where(m => m.RecipientID.Equals(userId) && m.SenderID.Equals(recipientId)
                  || m.RecipientID.Equals(recipientId) && m.SenderID.Equals(userId))
                  .OrderByDescending(m => m.MessageSent).ToListAsync();

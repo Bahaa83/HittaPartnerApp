@@ -123,5 +123,33 @@ namespace HittaPartnerApp.API.Controllers
             var messageToreturn = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
             return Ok(messageToreturn);
         }
+        /// <summary>
+        /// Funktion för att ta bort ett meddelande
+        /// </summary>
+        /// <param name="messageId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpPost("DeleteMessage")]
+        [ProducesResponseType(204)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult>DeleteMessage(int messageId,string userId)
+        {
+            if (userId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                return Unauthorized();
+            }
+            var message = await _hittaPartnerRepo.GetMessage(messageId);
+            if (message.SenderID.Equals(userId))
+                message.SenderDeleted = true;
+            if (message.RecipientID.Equals(userId))
+                message.RecipienDeleted = true;
+            if (message.SenderDeleted && message.RecipienDeleted)
+                _hittaPartnerRepo.Delete(message);
+            if (await _hittaPartnerRepo.SaveAll())
+                return NoContent();
+            throw new Exception("Ett fel uppstod meddelandet togs bort");
+
+
+        }
     }
 }

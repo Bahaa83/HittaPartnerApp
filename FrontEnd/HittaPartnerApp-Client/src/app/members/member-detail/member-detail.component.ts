@@ -13,7 +13,7 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class MemberDetailComponent implements OnInit {
 
-  @ViewChild('memberTabs', { static: true }) memberTabs!: TabsetComponent
+  @ViewChild('memberTabs', { static: true }) memberTabs: TabsetComponent|any
  user! : User ; 
   galleryOptions!: NgxGalleryOptions[];
   galleryImages!: NgxGalleryImage[];
@@ -26,8 +26,9 @@ export class MemberDetailComponent implements OnInit {
     });
     this.rout.queryParams.subscribe(
       params=>{
+        debugger
         const selectedTab= params['tab'];
-        this.memberTabs.tabs[selectedTab > 0 ? selectedTab :0]!.active=true;
+        this.memberTabs.tabs[selectedTab].active=true;
       }
     )
     this.galleryOptions = [
@@ -42,9 +43,9 @@ export class MemberDetailComponent implements OnInit {
     ]
     this.galleryImages =this.getImage();
   }
-  selectTab(tabId:number){
+  selectTab(tabsId:number){
    
-    this.memberTabs.tabs[tabId].active = true;
+    this.memberTabs.tabs[3].active = true;
   }
   
   getImage()

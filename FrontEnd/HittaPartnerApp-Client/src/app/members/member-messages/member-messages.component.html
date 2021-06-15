@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-body">
+    <div #panel class="card-body">
         <div style="font-weight:bold;font-size:1.2rem;" *ngIf="messages?.length === 0">
             Inga meddelanden ännu ... Skriv Hej och skicka det för att starta en ny upplevelse
         </div>
@@ -8,7 +8,7 @@
             <li *ngFor="let message of messages">
                 <!-- Inbox -->
                 <div *ngIf="message.senderID ==recipientId ">
-                    <div class="text-rihgt ">
+                    <div class="text-left ">
                         <div class="badge badge-primary">
                             <span >
                                 <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}"
@@ -23,7 +23,7 @@
 
                     </div>
 
-                    <div class="text-rihgt">
+                    <div class="text-left">
                         <p class="content-inbox text text-primary d-inline-block">{{message.content}}</p>
                     </div>
 

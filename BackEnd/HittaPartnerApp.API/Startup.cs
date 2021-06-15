@@ -49,7 +49,20 @@ namespace HittaPartnerApp.API
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
-            services.AddCors();
+            services.AddCors(opttions=> 
+            {
+                opttions.AddPolicy("AllowAllHeaders",
+                    buildir =>
+                    {
+                        buildir.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+            services.AddSignalR(options=> 
+            {
+                options.EnableDetailedErrors = true;
+            });
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddTransient<TrialData>();
             services.AddScoped<IAuthentication, Authentication>();
@@ -150,13 +163,14 @@ namespace HittaPartnerApp.API
             
             app.UseRouting();
             //seedData.TrialUsers();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors("AllowAllHeaders");
             app.UseAuthentication();
             app.UseAuthorization();
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

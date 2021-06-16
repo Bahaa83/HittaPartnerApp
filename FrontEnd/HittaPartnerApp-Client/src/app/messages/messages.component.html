@@ -40,7 +40,7 @@
         </td>
         <td >{{message.messageSent|dateAgo}}</td>
         <td>
-          <div class="text text-danger"><i style="font-size:28px;" class="fa fa-trash-o" title="Ta bort" aria-hidden="true"></i></div>
+          <div (click)="$event.stopPropagation()" (click)="deleteMessage(message.id)" class="text text-danger"><i style="font-size:28px;" class="fa fa-trash-o" title="Ta bort" aria-hidden="true"></i></div>
         </td>
       </tr>
     </table>

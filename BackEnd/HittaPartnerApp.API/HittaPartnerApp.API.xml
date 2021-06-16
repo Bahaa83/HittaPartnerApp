@@ -50,6 +50,14 @@
             <param name="recipientId"></param>
             <returns> lista av MessageToReturnDto</returns>
         </member>
+        <member name="M:HittaPartnerApp.API.Controllers.MessagesController.DeleteMessage(System.Int32,System.String)">
+            <summary>
+            Funktion för att ta bort ett meddelande
+            </summary>
+            <param name="messageId"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="M:HittaPartnerApp.API.Controllers.PhotosController.AddPhotoForUser(System.String,HittaPartnerApp.API.Services.DtoModels.PhotoForUserDto)">
             <summary>
             Funktion för att Lägga till ett foto och visa det

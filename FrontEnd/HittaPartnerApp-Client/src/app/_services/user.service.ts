@@ -96,5 +96,10 @@ import { User } from '../_models/user';
             sendMessage(id:string,message:Message){
               return this.http.post(this.messagebaseUrl+'Messages/CreateMessage?userId='+id,message);
             }
+            deleteMessage(messageId:number,userid:string){
+              return this.http.post(this.messagebaseUrl+'Messages/DeleteMessage?messageId='+messageId+'&userId='+userid,{});
+
+            }
+           
             
  }

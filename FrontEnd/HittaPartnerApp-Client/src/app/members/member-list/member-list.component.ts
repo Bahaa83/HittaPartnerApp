@@ -43,13 +43,13 @@ export class MemberListComponent implements OnInit {
   }
   pageChanged(event:any){
     this.pagination.currentPage=event.page;
+    
     this.loadUsers();
   }
   loadUsers(){
-    if(!this.search){
-      this.pagination.currentPage=1;
-    }
+  
    this.userService.getAllUsers(this.pagination.currentPage,this.pagination.itemsPerPage,this.userParams)
+  
    .subscribe((users:PaginationResult<User[]>)=>
     {
       this.users=users.result;

@@ -40,5 +40,18 @@ messageType='Unread'
     this.pagination.currentPage=event.page;
     this.loadMessages();
   }
+  deleteMessage(id:number){
+    this.alertify.confirm("Är du säker på att du vill ta bort det här meddelandet?",()=>{
+      this.userService.deleteMessage(id,this.authService.decodedToken.nameid).subscribe(
+        ()=>{this.messages.splice(this.messages.findIndex((m:any)=>m.id==id),1);
+        this.alertify.success('Meddelandet har tagits bort');
+        
+        },
+        error=>{this.alertify.error(error)}
+        
+      )
+    })
+  }
+ 
 
 }

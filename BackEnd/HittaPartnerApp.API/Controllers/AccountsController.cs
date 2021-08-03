@@ -76,7 +76,7 @@ namespace HittaPartnerApp.API.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(30),
+                Expires = DateTime.Now.AddDays(2),
                 SigningCredentials = creds
             };
             var tokenHandler = new JwtSecurityTokenHandler();
